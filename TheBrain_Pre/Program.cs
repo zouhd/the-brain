@@ -19,6 +19,7 @@ namespace TheBrain
             th.StartNonParamThread();
             th.StartParamThread();
 
+            /*线程池*/
             ThreadPoolDemo tp = new ThreadPoolDemo();
             tp.StartThread();
 
