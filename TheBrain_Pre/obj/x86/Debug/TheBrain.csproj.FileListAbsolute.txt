@@ -1,0 +1,4 @@
+C:\Users\phevos\documents\visual studio 2010\Projects\MyHelloCS\TheBrain\bin\Debug\TheBrain.exe
+C:\Users\phevos\documents\visual studio 2010\Projects\MyHelloCS\TheBrain\bin\Debug\TheBrain.pdb
+C:\Users\phevos\documents\visual studio 2010\Projects\MyHelloCS\TheBrain\obj\x86\Debug\TheBrain.exe
+C:\Users\phevos\documents\visual studio 2010\Projects\MyHelloCS\TheBrain\obj\x86\Debug\TheBrain.pdb
