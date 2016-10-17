@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace FenxingDemo
 {
-    public partial class Form1 : Form
+    public partial class ConsoleForm : Form
     {
-        public Form1()
+        public ConsoleForm()
         {
             InitializeComponent();
         }

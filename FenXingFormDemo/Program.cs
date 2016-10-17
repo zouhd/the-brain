@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FenxingDemo
+namespace FenXingFormDemo
 {
     static class Program
     {
@@ -16,7 +15,7 @@ namespace FenxingDemo
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ConsoleForm());
+            Application.Run(new ConsoleScreen());
         }
     }
 }
