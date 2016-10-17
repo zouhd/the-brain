@@ -190,6 +190,7 @@ namespace FenXingFormDemo
 
         /***
          * 选中制定页，制定编码图片
+         * Todo: 已选择的图片保持绿底
          */
         private void button_select_Click(object sender, EventArgs e)
         {
