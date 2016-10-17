@@ -58,6 +58,8 @@
     <Compile Include="ConsoleScreen.Designer.cs">
       <DependentUpon>ConsoleScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="FxImage.cs" />
+    <Compile Include="FxImageList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="BigScreen.resx">
