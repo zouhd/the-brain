@@ -17,7 +17,17 @@ namespace FenXingFormDemo
         {
             InitializeComponent();
 
-            m_big_screen = new BigScreen();
+            /*
+             * 根据选手的选题，初始化大屏图片 （提供图片basedir以及题号）
+             * 图片库的命名规范是
+             * basedir/
+             * *******--A1 ————001.jpg 002.jpg  003.jpg
+             * *******--A2
+             * *******--A3
+             * *******-B1等
+             */
+            m_big_screen = new BigScreen(1, 3);
+            m_big_screen.InitFxImageList();
         }
 
         /***

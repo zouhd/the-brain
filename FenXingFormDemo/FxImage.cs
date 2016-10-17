@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FenxingDemo
+namespace FenXingFormDemo
 {
     class FxImage
     {
@@ -28,6 +28,12 @@ namespace FenxingDemo
             m_study_flag = false;//默认没被选手选中学习
         }
 
+        public String IMAGE_NAME
+        {
+            get { return m_image_name; }
+            set { m_image_name = value; }
+        }
+
         public int SEQ_NUM
         {
             get { return m_seq_num; }
@@ -38,6 +44,12 @@ namespace FenxingDemo
         {
             get { return m_show_flag; }
             set { m_show_flag = value; }
+        }
+
+        public Boolean STUDY_FLAG
+        {
+            get { return m_study_flag; }
+            set { m_study_flag = value; }
         }
 
         public int FX_X
