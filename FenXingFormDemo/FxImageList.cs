@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 using System.Timers;
 
 namespace FenXingFormDemo
@@ -12,7 +11,7 @@ namespace FenXingFormDemo
     {
         private List<FxImage> m_fx_list;
         private String m_base_dir;//存放分形图片的目录
-        private String m_fx_id;//分形式样名称（16个之一）
+        private String m_fx_id;//分形式样名称（16个之一），A1，A2，A3
         private int m_fx_image_num;//分形图片数量
         
 
@@ -36,7 +35,7 @@ namespace FenXingFormDemo
          * 
          * Todo:读取每张图片的参数值
          **/
-        public void ReadFxImage()
+        public void InitFxImages()
         {
             for (int i = 1; i <= m_fx_image_num; i++)
             {
@@ -55,11 +54,16 @@ namespace FenXingFormDemo
          * 根据Fx编号返回FxImage对象引用
          * Todo:加强判断
          ***/
-        public FxImage GetFxImage(int fx_seq_num )
+        public void GetFxImage(out FxImage fx_img,  int fx_seq_num )
+        {
+            fx_img = m_fx_list[fx_seq_num - 1];
+        }
+
+
+        public FxImage GetFxImage(int fx_seq_num)
         {
             return m_fx_list[fx_seq_num - 1];
         }
-        
         /**
          * 按照编号显示分形图片
          * */
