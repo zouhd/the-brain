@@ -15,7 +15,8 @@ namespace FenXingFormDemo
         private Boolean m_show_flag;/*显示标记，标记图片是否显示，不显示的图片
        包括开头，结尾，选手选择的3张截图以及电脑随机消除的95张截图*/
         private Boolean m_study_flag;//是否被选手选中学习
-
+        private Boolean m_first_flag;//第一张图片标记
+        private Boolean m_last_flag;//最后一张图片标记
         public FxImage(String image_name, int seq_num, int fx_x, int fx_y)
         {
  
@@ -26,6 +27,9 @@ namespace FenXingFormDemo
 
             m_show_flag = true;//默认显示
             m_study_flag = false;//默认没被选手选中学习
+
+            m_first_flag = false;
+            m_last_flag = false;
         }
 
         public String IMAGE_NAME
@@ -50,6 +54,17 @@ namespace FenXingFormDemo
         {
             get { return m_study_flag; }
             set { m_study_flag = value; }
+        }
+
+        public Boolean FIRST_FLAG
+        {
+            get { return m_first_flag; }
+            set { m_first_flag = value; }
+        }
+        public Boolean LAST_FLAG
+        {
+            get { return m_last_flag; }
+            set { m_last_flag = value; }
         }
 
         public int FX_X

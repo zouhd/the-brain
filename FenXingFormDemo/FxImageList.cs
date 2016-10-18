@@ -73,10 +73,18 @@ namespace FenXingFormDemo
                 
                 //初始化fx图片数据
                 //Todo: 对第一张图片和最后一张图片处理
+                if (i == 1)
+                {
+                    img.STUDY_FLAG = true;//默认第一张和最后一张图片学习
+                    img.FIRST_FLAG = true;
+                    
+                }
                 if (i == 1 || i == m_fx_image_num)
                 {
                     img.STUDY_FLAG = true;//默认第一张和最后一张图片学习
+                    img.LAST_FLAG = true;//
                 }
+
                 m_fx_list.Add(img);
 
             }

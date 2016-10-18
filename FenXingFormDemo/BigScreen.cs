@@ -86,13 +86,14 @@ namespace FenXingFormDemo
         }
 
         /// <summary>
-        /// 初始化图片空间位置
+        /// 初始化图片控件位置
         /// </summary>
         public void InitPictureBox()
         {
             int pic_height = m_pic_list[0].Height;
             int pic_width = m_pic_list[0].Width;
 
+            //设置图片控件的位置
             for (int i = 0; i < m_pic_row; i++)
             {
                 for (int j = 0; j < m_pic_col; j++)
