@@ -88,6 +88,24 @@ namespace FenXingFormDemo
 
         }
 
+        public static int Compare(FxImage left, FxImage right)
+        {
+            int ret = 0;
+            if (left.SEQ_NUM == right.SEQ_NUM)
+            {
+                ret = 0;
+            }
+            else if (left.SEQ_NUM < right.SEQ_NUM)
+            {
+                ret = -1;
+            }
+            else
+            {
+                ret = 1;
+            }
+
+            return ret;
+        }
 
     }
 }

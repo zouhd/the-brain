@@ -12,7 +12,9 @@ namespace FenXingFormDemo
     public partial class ConsoleScreen : Form
     {
         private const int const_page_num = 1;
-        private const int const_pages = 3;
+        private const int const_pages = 2;
+        private int pic_row = 2;
+        private int pic_col = 5;
         private BigScreen m_big_screen;//大屏程序
 
         public ConsoleScreen()
@@ -28,8 +30,8 @@ namespace FenXingFormDemo
              * *******--A3
              * *******-B1等
              */
-            m_big_screen = new BigScreen(const_page_num, const_pages);
-            m_big_screen.InitFxImageList();
+            m_big_screen = new BigScreen(const_page_num, const_pages, pic_row, pic_col);
+            //m_big_screen.InitFxImageList();
         }
 
         /***
@@ -61,20 +63,20 @@ namespace FenXingFormDemo
 
             if(currentPage <= 1)
             {
-                button1.Enabled = false;
+                button_pre.Enabled = false;
             }
             else
             {
-                button1.Enabled = true;
+                button_pre.Enabled = true;
             }
 
             if (currentPage >= const_pages)
             {
-                button2.Enabled = false;
+                button_next.Enabled = false;
             }
             else
             {
-                button2.Enabled = true;
+                button_next.Enabled = true;
             }
         }
 
@@ -93,6 +95,17 @@ namespace FenXingFormDemo
                 return;
             }
             m_big_screen.button_select_Click(page_num, pic_num);
+        }
+
+        private void button_reset_Click(object sender, EventArgs e)
+        {
+            m_big_screen.ResetFxImageList();
+            m_big_screen.LoadFxPicture(const_page_num);
+        }
+
+        private void button_shuffle_Click(object sender, EventArgs e)
+        {
+            m_big_screen.ShuffleFxPicture();
         }
     }
 }

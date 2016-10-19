@@ -29,167 +29,214 @@
         private void InitializeComponent()
         {
             this.button_bigscreen = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
-            this.BigScreenPageInfo = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.PageNumTextBox = new System.Windows.Forms.TextBox();
+            this.tabControl_setting = new System.Windows.Forms.TabControl();
+            this.tabPage_big_screen = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button_shuffle = new System.Windows.Forms.Button();
+            this.button_choose = new System.Windows.Forms.Button();
             this.PicNumTextBox = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.PageNumTextBox = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button_next = new System.Windows.Forms.Button();
+            this.BigScreenPageInfo = new System.Windows.Forms.Label();
+            this.button_pre = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tabPage_cast_screen = new System.Windows.Forms.TabPage();
+            this.tabPage_player_screen = new System.Windows.Forms.TabPage();
+            this.button_reset = new System.Windows.Forms.Button();
+            this.tabControl_setting.SuspendLayout();
+            this.tabPage_big_screen.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button_bigscreen
             // 
-            this.button_bigscreen.Location = new System.Drawing.Point(94, 88);
+            this.button_bigscreen.Location = new System.Drawing.Point(47, 54);
             this.button_bigscreen.Name = "button_bigscreen";
-            this.button_bigscreen.Size = new System.Drawing.Size(75, 25);
+            this.button_bigscreen.Size = new System.Drawing.Size(120, 23);
             this.button_bigscreen.TabIndex = 0;
-            this.button_bigscreen.Text = "大屏";
+            this.button_bigscreen.Text = "启动大屏";
             this.button_bigscreen.UseVisualStyleBackColor = true;
             this.button_bigscreen.Click += new System.EventHandler(this.button_bigscreen_Click);
             // 
-            // groupBox1
+            // tabControl_setting
             // 
-            this.groupBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.groupBox1.Controls.Add(this.button_bigscreen);
-            this.groupBox1.Location = new System.Drawing.Point(12, 107);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(184, 138);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "大屏设置";
+            this.tabControl_setting.Controls.Add(this.tabPage_big_screen);
+            this.tabControl_setting.Controls.Add(this.tabPage_cast_screen);
+            this.tabControl_setting.Controls.Add(this.tabPage_player_screen);
+            this.tabControl_setting.Location = new System.Drawing.Point(12, 12);
+            this.tabControl_setting.Name = "tabControl_setting";
+            this.tabControl_setting.SelectedIndex = 0;
+            this.tabControl_setting.Size = new System.Drawing.Size(557, 338);
+            this.tabControl_setting.TabIndex = 2;
             // 
-            // tabControl1
+            // tabPage_big_screen
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(201, 73);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(368, 258);
-            this.tabControl1.TabIndex = 2;
+            this.tabPage_big_screen.Controls.Add(this.groupBox2);
+            this.tabPage_big_screen.Controls.Add(this.groupBox1);
+            this.tabPage_big_screen.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_big_screen.Name = "tabPage_big_screen";
+            this.tabPage_big_screen.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_big_screen.Size = new System.Drawing.Size(549, 312);
+            this.tabPage_big_screen.TabIndex = 0;
+            this.tabPage_big_screen.Text = "大屏设置";
+            this.tabPage_big_screen.UseVisualStyleBackColor = true;
             // 
-            // tabPage1
+            // groupBox2
             // 
-            this.tabPage1.Controls.Add(this.button3);
-            this.tabPage1.Controls.Add(this.PicNumTextBox);
-            this.tabPage1.Controls.Add(this.PageNumTextBox);
-            this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Controls.Add(this.button2);
-            this.tabPage1.Controls.Add(this.BigScreenPageInfo);
-            this.tabPage1.Controls.Add(this.button1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(360, 232);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.groupBox2.Controls.Add(this.button_shuffle);
+            this.groupBox2.Controls.Add(this.button_choose);
+            this.groupBox2.Controls.Add(this.PicNumTextBox);
+            this.groupBox2.Controls.Add(this.PageNumTextBox);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.button_next);
+            this.groupBox2.Controls.Add(this.BigScreenPageInfo);
+            this.groupBox2.Controls.Add(this.button_pre);
+            this.groupBox2.Location = new System.Drawing.Point(43, 142);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(455, 169);
+            this.groupBox2.TabIndex = 9;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "操作";
             // 
-            // tabPage2
+            // button_shuffle
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(360, 232);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.button_shuffle.Location = new System.Drawing.Point(333, 119);
+            this.button_shuffle.Name = "button_shuffle";
+            this.button_shuffle.Size = new System.Drawing.Size(75, 23);
+            this.button_shuffle.TabIndex = 8;
+            this.button_shuffle.Text = "打乱图片";
+            this.button_shuffle.UseVisualStyleBackColor = true;
+            this.button_shuffle.Click += new System.EventHandler(this.button_shuffle_Click);
             // 
-            // button1
+            // button_choose
             // 
-            this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(141, 30);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = " 上一页";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button_choose.Location = new System.Drawing.Point(333, 74);
+            this.button_choose.Name = "button_choose";
+            this.button_choose.Size = new System.Drawing.Size(98, 21);
+            this.button_choose.TabIndex = 7;
+            this.button_choose.Text = "确认选择图片";
+            this.button_choose.UseVisualStyleBackColor = true;
+            this.button_choose.Click += new System.EventHandler(this.button3_Click);
             // 
-            // BigScreenPageInfo
+            // PicNumTextBox
             // 
-            this.BigScreenPageInfo.AutoSize = true;
-            this.BigScreenPageInfo.Location = new System.Drawing.Point(44, 35);
-            this.BigScreenPageInfo.Name = "BigScreenPageInfo";
-            this.BigScreenPageInfo.Size = new System.Drawing.Size(37, 13);
-            this.BigScreenPageInfo.TabIndex = 1;
-            this.BigScreenPageInfo.Text = "第1页";
+            this.PicNumTextBox.Location = new System.Drawing.Point(235, 75);
+            this.PicNumTextBox.Name = "PicNumTextBox";
+            this.PicNumTextBox.Size = new System.Drawing.Size(75, 21);
+            this.PicNumTextBox.TabIndex = 6;
             // 
-            // button2
+            // PageNumTextBox
             // 
-            this.button2.Location = new System.Drawing.Point(250, 30);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = " 下一页";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(44, 80);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "页号：";
+            this.PageNumTextBox.Location = new System.Drawing.Point(70, 75);
+            this.PageNumTextBox.Name = "PageNumTextBox";
+            this.PageNumTextBox.Size = new System.Drawing.Size(75, 21);
+            this.PageNumTextBox.TabIndex = 5;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(161, 80);
+            this.label2.Location = new System.Drawing.Point(164, 79);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 13);
+            this.label2.Size = new System.Drawing.Size(65, 12);
             this.label2.TabIndex = 4;
             this.label2.Text = "图片编号：";
             // 
-            // PageNumTextBox
+            // label1
             // 
-            this.PageNumTextBox.Location = new System.Drawing.Point(81, 77);
-            this.PageNumTextBox.Name = "PageNumTextBox";
-            this.PageNumTextBox.Size = new System.Drawing.Size(63, 20);
-            this.PageNumTextBox.TabIndex = 5;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(23, 79);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 12);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "页号：";
             // 
-            // PicNumTextBox
+            // button_next
             // 
-            this.PicNumTextBox.Location = new System.Drawing.Point(223, 77);
-            this.PicNumTextBox.Name = "PicNumTextBox";
-            this.PicNumTextBox.Size = new System.Drawing.Size(63, 20);
-            this.PicNumTextBox.TabIndex = 6;
+            this.button_next.Location = new System.Drawing.Point(287, 27);
+            this.button_next.Name = "button_next";
+            this.button_next.Size = new System.Drawing.Size(144, 21);
+            this.button_next.TabIndex = 2;
+            this.button_next.Text = " 下一页";
+            this.button_next.UseVisualStyleBackColor = true;
+            this.button_next.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button3
+            // BigScreenPageInfo
             // 
-            this.button3.Location = new System.Drawing.Point(64, 112);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(203, 23);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "确认选择图片";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.BigScreenPageInfo.AutoSize = true;
+            this.BigScreenPageInfo.Location = new System.Drawing.Point(205, 31);
+            this.BigScreenPageInfo.Name = "BigScreenPageInfo";
+            this.BigScreenPageInfo.Size = new System.Drawing.Size(35, 12);
+            this.BigScreenPageInfo.TabIndex = 1;
+            this.BigScreenPageInfo.Text = "第1页";
+            // 
+            // button_pre
+            // 
+            this.button_pre.Enabled = false;
+            this.button_pre.Location = new System.Drawing.Point(25, 27);
+            this.button_pre.Name = "button_pre";
+            this.button_pre.Size = new System.Drawing.Size(144, 21);
+            this.button_pre.TabIndex = 0;
+            this.button_pre.Text = " 上一页";
+            this.button_pre.UseVisualStyleBackColor = true;
+            this.button_pre.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.button_reset);
+            this.groupBox1.Controls.Add(this.button_bigscreen);
+            this.groupBox1.Location = new System.Drawing.Point(45, 24);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(453, 99);
+            this.groupBox1.TabIndex = 8;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "设置";
+            // 
+            // tabPage_cast_screen
+            // 
+            this.tabPage_cast_screen.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_cast_screen.Name = "tabPage_cast_screen";
+            this.tabPage_cast_screen.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_cast_screen.Size = new System.Drawing.Size(549, 312);
+            this.tabPage_cast_screen.TabIndex = 1;
+            this.tabPage_cast_screen.Text = "嘉宾屏幕设置";
+            this.tabPage_cast_screen.UseVisualStyleBackColor = true;
+            // 
+            // tabPage_player_screen
+            // 
+            this.tabPage_player_screen.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_player_screen.Name = "tabPage_player_screen";
+            this.tabPage_player_screen.Size = new System.Drawing.Size(549, 312);
+            this.tabPage_player_screen.TabIndex = 2;
+            this.tabPage_player_screen.Text = "选手屏幕设置";
+            this.tabPage_player_screen.UseVisualStyleBackColor = true;
+            // 
+            // button_reset
+            // 
+            this.button_reset.Location = new System.Drawing.Point(285, 54);
+            this.button_reset.Name = "button_reset";
+            this.button_reset.Size = new System.Drawing.Size(97, 23);
+            this.button_reset.TabIndex = 1;
+            this.button_reset.Text = "重置大屏";
+            this.button_reset.UseVisualStyleBackColor = true;
+            this.button_reset.Click += new System.EventHandler(this.button_reset_Click);
             // 
             // ConsoleScreen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 392);
-            this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(584, 362);
+            this.Controls.Add(this.tabControl_setting);
             this.Name = "ConsoleScreen";
             this.Text = "控制台";
+            this.tabControl_setting.ResumeLayout(false);
+            this.tabPage_big_screen.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -197,18 +244,22 @@
         #endregion
 
         private System.Windows.Forms.Button button_bigscreen;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TabControl tabControl_setting;
+        private System.Windows.Forms.TabPage tabPage_big_screen;
+        private System.Windows.Forms.TabPage tabPage_cast_screen;
+        private System.Windows.Forms.Button button_pre;
+        private System.Windows.Forms.Button button_next;
         private System.Windows.Forms.Label BigScreenPageInfo;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox PicNumTextBox;
         private System.Windows.Forms.TextBox PageNumTextBox;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button_choose;
+        private System.Windows.Forms.TabPage tabPage_player_screen;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button button_shuffle;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button button_reset;
     }
 }
 

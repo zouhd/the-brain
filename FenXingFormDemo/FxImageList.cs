@@ -90,12 +90,46 @@ namespace FenXingFormDemo
             }
         }
 
-        
+        //重置分形图片数据
+        public void ResetFxImages()
+        {
+            //Todo:恢复排序
+            m_fx_list.Sort(FxImage.Compare);
+
+            for (int i = 1; i <= m_fx_image_num; i++)
+            {
+
+                m_fx_list[i - 1].SHOW_FLAG = true;
+
+                //初始化fx图片数据
+                //Todo: 对第一张图片和最后一张图片处理
+                if (i == 1)
+                {
+                    m_fx_list[i - 1].STUDY_FLAG = true;//默认第一张和最后一张图片学习
+                    m_fx_list[i - 1].FIRST_FLAG = true;
+
+                }
+                else if (i == m_fx_image_num)
+                {
+                    m_fx_list[i - 1].STUDY_FLAG = true;//默认第一张和最后一张图片学习
+                    m_fx_list[i - 1].LAST_FLAG = true;//
+                }
+                else
+                {
+                    m_fx_list[i - 1].STUDY_FLAG = false;
+                }
+
+
+            }
+        }
+
 
         public FxImage GetFxImage(int fx_seq_num)
         {
             return m_fx_list[fx_seq_num - 1];
         }
+
+
         /**
          * 按照编号显示分形图片
          * */
@@ -135,10 +169,25 @@ namespace FenXingFormDemo
          * 
          *将分形图片打乱展示 
          **/
-        public void ShuffleImages()
+        public void ShuffleFxImages()
         {
             Random r = new Random(DateTime.Now.Millisecond);
-            int randnum = r.Next();
+            
+            int index = 0;
+            FxImage temp = null;
+            for (int i = 0; i < m_fx_image_num; i++)
+            {
+
+                index = r.Next(0, m_fx_image_num);
+
+                if (index != i)
+                {
+                    temp = m_fx_list[i];
+                    m_fx_list[i] = m_fx_list[index];
+                    m_fx_list[index] = temp;
+                }
+            }
+
         }
 
     }
