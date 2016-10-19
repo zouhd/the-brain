@@ -67,12 +67,12 @@ namespace FenXingFormDemo
             m_label_fx_seq_list.Add(label_fx4);
             m_label_fx_seq_list.Add(label_fx5);
 
-            label_page.Text = m_page_num.ToString();
-
-            if (m_page_num == 1)
-                button_pre.Enabled = false;
-            label_page.Text = String.Format("第{0}页", m_page_num.ToString());
             LoadFxPicture(m_page_num);
+        }
+
+        public int GetCurrentPageIndex()
+        {
+            return m_page_num;
         }
 
         /**
@@ -161,43 +161,19 @@ namespace FenXingFormDemo
         /**
          * 上一页按钮
          */
-        private void button_pre_Click(object sender, EventArgs e)
+        public void button_pre_Click()
         {
             m_page_num--;
-            if (m_page_num == 1)
-            {
-                button_pre.Enabled = false;
-
-            }
-            else
-            {
-                button_pre.Enabled = true;
-            }
-
             LoadFxPicture(m_page_num);
-
-            button_next.Enabled = true;
-            label_page.Text = String.Format("第{0}页", m_page_num.ToString());
         }
 
         /**
          * 下一页按钮，默认共10页
          */
-        private void button_next_Click(object sender, EventArgs e)
+        public void button_next_Click()
         {
             m_page_num++;
-            if (m_page_num == m_pages)
-            {
-                button_next.Enabled = false;
-            }
-            else
-            {
-                button_next.Enabled = true;
-            }
-
             LoadFxPicture(m_page_num);
-            button_pre.Enabled = true;
-            label_page.Text = String.Format("第{0}页", m_page_num.ToString());
         }
 
 
@@ -217,15 +193,11 @@ namespace FenXingFormDemo
          * 选中制定页，制定编码图片
          * Todo: 已选择的图片保持绿底
          */
-        private void button_select_Click(object sender, EventArgs e)
+        public void button_select_Click(int page_num, int pic_num)
         {
-
             int pic_box_num = m_pic_col * m_pic_row;//PictureBox控件数量
 
             //Todo: 加上页码和编号判断
-            int page_num =  Int32.Parse(textBox_page_num.Text);
-            int pic_num = Int32.Parse(textBox_pic_num.Text);
-
             
             //加载选手选择的页面
             if (page_num <= m_pages && page_num > 0)
