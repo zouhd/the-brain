@@ -34,23 +34,51 @@ namespace FenXingFormDemo
             //m_big_screen.InitFxImageList();
         }
 
-        /***
-         * 
-         * 关闭窗口程序
-         * 
-         * */
-        private void button_bigscreen_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 启动大屏
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button_launch_Click(object sender, EventArgs e)
         {
+            m_big_screen.Left = 0;
+            m_big_screen.Top = 0;
+            m_big_screen.StartPosition = FormStartPosition.CenterScreen;
             m_big_screen.Show();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 重置大屏
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button_reset_Click(object sender, EventArgs e)
+        {
+            m_big_screen.ResetFxImageList();
+            m_big_screen.LoadFxPicture(const_page_num);
+        }
+
+
+        //Todo:后期改成去除图片按钮
+        /// <summary>
+        /// 清理大屏图片控件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button_clear_Click(object sender, EventArgs e)
+        {
+            m_big_screen.ClearComponent();
+            m_big_screen.InitializeMyComponent();
+        }
+
+
+        private void button_pre_Click(object sender, EventArgs e)
         {
             m_big_screen.button_pre_Click();
             UpdatePageAndButtonEnableStatus();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button_next_Click(object sender, EventArgs e)
         {
             m_big_screen.button_next_Click();
             UpdatePageAndButtonEnableStatus();
@@ -80,7 +108,12 @@ namespace FenXingFormDemo
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 选手选择图片
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button_choose_Click(object sender, EventArgs e)
         {
             int page_num = 1;
             int pic_num = 1;
@@ -97,15 +130,18 @@ namespace FenXingFormDemo
             m_big_screen.button_select_Click(page_num, pic_num);
         }
 
-        private void button_reset_Click(object sender, EventArgs e)
-        {
-            m_big_screen.ResetFxImageList();
-            m_big_screen.LoadFxPicture(const_page_num);
-        }
+        
 
+        /// <summary>
+        /// 打乱图片
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button_shuffle_Click(object sender, EventArgs e)
         {
             m_big_screen.ShuffleFxPicture();
         }
+
+        
     }
 }

@@ -121,7 +121,7 @@ namespace FenXingFormDemo
             {
                 for (int j = 0; j < m_pic_col; j++)
                 {
-                    m_pic_list[j + i * m_pic_col].Left = (j + 1) * 10 + j * pic_width;
+                    m_pic_list[j + i * m_pic_col].Left = 10 + j  * 20 + j * pic_width;
                     m_pic_list[j + i * m_pic_col].Top = (i + 1) * 20 + i * pic_height;
                     m_pic_list[j + i * m_pic_col].BackColor = Color.Transparent;
                    // m_pic_list[j + i * m_pic_col].Show();

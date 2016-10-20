@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button_bigscreen = new System.Windows.Forms.Button();
+            this.button_launch = new System.Windows.Forms.Button();
             this.tabControl_setting = new System.Windows.Forms.TabControl();
             this.tabPage_big_screen = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -42,24 +42,25 @@
             this.BigScreenPageInfo = new System.Windows.Forms.Label();
             this.button_pre = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button_reset = new System.Windows.Forms.Button();
             this.tabPage_cast_screen = new System.Windows.Forms.TabPage();
             this.tabPage_player_screen = new System.Windows.Forms.TabPage();
-            this.button_reset = new System.Windows.Forms.Button();
+            this.button_clear = new System.Windows.Forms.Button();
             this.tabControl_setting.SuspendLayout();
             this.tabPage_big_screen.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button_bigscreen
+            // button_launch
             // 
-            this.button_bigscreen.Location = new System.Drawing.Point(47, 54);
-            this.button_bigscreen.Name = "button_bigscreen";
-            this.button_bigscreen.Size = new System.Drawing.Size(120, 23);
-            this.button_bigscreen.TabIndex = 0;
-            this.button_bigscreen.Text = "启动大屏";
-            this.button_bigscreen.UseVisualStyleBackColor = true;
-            this.button_bigscreen.Click += new System.EventHandler(this.button_bigscreen_Click);
+            this.button_launch.Location = new System.Drawing.Point(16, 39);
+            this.button_launch.Name = "button_launch";
+            this.button_launch.Size = new System.Drawing.Size(132, 23);
+            this.button_launch.TabIndex = 0;
+            this.button_launch.Text = "启动大屏";
+            this.button_launch.UseVisualStyleBackColor = true;
+            this.button_launch.Click += new System.EventHandler(this.button_launch_Click);
             // 
             // tabControl_setting
             // 
@@ -95,18 +96,18 @@
             this.groupBox2.Controls.Add(this.button_next);
             this.groupBox2.Controls.Add(this.BigScreenPageInfo);
             this.groupBox2.Controls.Add(this.button_pre);
-            this.groupBox2.Location = new System.Drawing.Point(43, 142);
+            this.groupBox2.Location = new System.Drawing.Point(43, 134);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(455, 169);
+            this.groupBox2.Size = new System.Drawing.Size(455, 162);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "操作";
             // 
             // button_shuffle
             // 
-            this.button_shuffle.Location = new System.Drawing.Point(333, 119);
+            this.button_shuffle.Location = new System.Drawing.Point(25, 119);
             this.button_shuffle.Name = "button_shuffle";
-            this.button_shuffle.Size = new System.Drawing.Size(75, 23);
+            this.button_shuffle.Size = new System.Drawing.Size(406, 23);
             this.button_shuffle.TabIndex = 8;
             this.button_shuffle.Text = "打乱图片";
             this.button_shuffle.UseVisualStyleBackColor = true;
@@ -114,24 +115,24 @@
             // 
             // button_choose
             // 
-            this.button_choose.Location = new System.Drawing.Point(333, 74);
+            this.button_choose.Location = new System.Drawing.Point(309, 74);
             this.button_choose.Name = "button_choose";
-            this.button_choose.Size = new System.Drawing.Size(98, 21);
+            this.button_choose.Size = new System.Drawing.Size(122, 21);
             this.button_choose.TabIndex = 7;
             this.button_choose.Text = "确认选择图片";
             this.button_choose.UseVisualStyleBackColor = true;
-            this.button_choose.Click += new System.EventHandler(this.button3_Click);
+            this.button_choose.Click += new System.EventHandler(this.button_choose_Click);
             // 
             // PicNumTextBox
             // 
-            this.PicNumTextBox.Location = new System.Drawing.Point(235, 75);
+            this.PicNumTextBox.Location = new System.Drawing.Point(213, 74);
             this.PicNumTextBox.Name = "PicNumTextBox";
             this.PicNumTextBox.Size = new System.Drawing.Size(75, 21);
             this.PicNumTextBox.TabIndex = 6;
             // 
             // PageNumTextBox
             // 
-            this.PageNumTextBox.Location = new System.Drawing.Point(70, 75);
+            this.PageNumTextBox.Location = new System.Drawing.Point(62, 74);
             this.PageNumTextBox.Name = "PageNumTextBox";
             this.PageNumTextBox.Size = new System.Drawing.Size(75, 21);
             this.PageNumTextBox.TabIndex = 5;
@@ -139,35 +140,35 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(164, 79);
+            this.label2.Location = new System.Drawing.Point(154, 78);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 12);
+            this.label2.Size = new System.Drawing.Size(53, 12);
             this.label2.TabIndex = 4;
-            this.label2.Text = "图片编号：";
+            this.label2.Text = "图片编号";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(23, 79);
+            this.label1.Location = new System.Drawing.Point(16, 79);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 12);
+            this.label1.Size = new System.Drawing.Size(29, 12);
             this.label1.TabIndex = 3;
-            this.label1.Text = "页号：";
+            this.label1.Text = "页号";
             // 
             // button_next
             // 
-            this.button_next.Location = new System.Drawing.Point(287, 27);
+            this.button_next.Location = new System.Drawing.Point(309, 27);
             this.button_next.Name = "button_next";
-            this.button_next.Size = new System.Drawing.Size(144, 21);
+            this.button_next.Size = new System.Drawing.Size(122, 21);
             this.button_next.TabIndex = 2;
-            this.button_next.Text = " 下一页";
+            this.button_next.Text = "下一页";
             this.button_next.UseVisualStyleBackColor = true;
-            this.button_next.Click += new System.EventHandler(this.button2_Click);
+            this.button_next.Click += new System.EventHandler(this.button_next_Click);
             // 
             // BigScreenPageInfo
             // 
             this.BigScreenPageInfo.AutoSize = true;
-            this.BigScreenPageInfo.Location = new System.Drawing.Point(205, 31);
+            this.BigScreenPageInfo.Location = new System.Drawing.Point(205, 32);
             this.BigScreenPageInfo.Name = "BigScreenPageInfo";
             this.BigScreenPageInfo.Size = new System.Drawing.Size(35, 12);
             this.BigScreenPageInfo.TabIndex = 1;
@@ -176,24 +177,35 @@
             // button_pre
             // 
             this.button_pre.Enabled = false;
-            this.button_pre.Location = new System.Drawing.Point(25, 27);
+            this.button_pre.Location = new System.Drawing.Point(18, 27);
             this.button_pre.Name = "button_pre";
-            this.button_pre.Size = new System.Drawing.Size(144, 21);
+            this.button_pre.Size = new System.Drawing.Size(132, 21);
             this.button_pre.TabIndex = 0;
-            this.button_pre.Text = " 上一页";
+            this.button_pre.Text = "上一页";
             this.button_pre.UseVisualStyleBackColor = true;
-            this.button_pre.Click += new System.EventHandler(this.button1_Click);
+            this.button_pre.Click += new System.EventHandler(this.button_pre_Click);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button_clear);
             this.groupBox1.Controls.Add(this.button_reset);
-            this.groupBox1.Controls.Add(this.button_bigscreen);
+            this.groupBox1.Controls.Add(this.button_launch);
             this.groupBox1.Location = new System.Drawing.Point(45, 24);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(453, 99);
+            this.groupBox1.Size = new System.Drawing.Size(453, 88);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "设置";
+            // 
+            // button_reset
+            // 
+            this.button_reset.Location = new System.Drawing.Point(164, 39);
+            this.button_reset.Name = "button_reset";
+            this.button_reset.Size = new System.Drawing.Size(122, 23);
+            this.button_reset.TabIndex = 1;
+            this.button_reset.Text = "重置大屏";
+            this.button_reset.UseVisualStyleBackColor = true;
+            this.button_reset.Click += new System.EventHandler(this.button_reset_Click);
             // 
             // tabPage_cast_screen
             // 
@@ -214,15 +226,16 @@
             this.tabPage_player_screen.Text = "选手屏幕设置";
             this.tabPage_player_screen.UseVisualStyleBackColor = true;
             // 
-            // button_reset
+            // button_clear
             // 
-            this.button_reset.Location = new System.Drawing.Point(285, 54);
-            this.button_reset.Name = "button_reset";
-            this.button_reset.Size = new System.Drawing.Size(97, 23);
-            this.button_reset.TabIndex = 1;
-            this.button_reset.Text = "重置大屏";
-            this.button_reset.UseVisualStyleBackColor = true;
-            this.button_reset.Click += new System.EventHandler(this.button_reset_Click);
+            this.button_clear.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button_clear.Location = new System.Drawing.Point(307, 39);
+            this.button_clear.Name = "button_clear";
+            this.button_clear.Size = new System.Drawing.Size(122, 23);
+            this.button_clear.TabIndex = 2;
+            this.button_clear.Text = "清除大屏（慎点！）";
+            this.button_clear.UseVisualStyleBackColor = true;
+            this.button_clear.Click += new System.EventHandler(this.button_clear_Click);
             // 
             // ConsoleScreen
             // 
@@ -243,7 +256,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button_bigscreen;
+        private System.Windows.Forms.Button button_launch;
         private System.Windows.Forms.TabControl tabControl_setting;
         private System.Windows.Forms.TabPage tabPage_big_screen;
         private System.Windows.Forms.TabPage tabPage_cast_screen;
@@ -260,6 +273,7 @@
         private System.Windows.Forms.Button button_shuffle;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button_reset;
+        private System.Windows.Forms.Button button_clear;
     }
 }
 
