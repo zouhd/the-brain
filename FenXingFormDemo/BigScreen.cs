@@ -58,6 +58,17 @@ namespace FenXingFormDemo
             m_pic_list.Add(pictureBox8);
             m_pic_list.Add(pictureBox9);
             m_pic_list.Add(pictureBox10);
+
+            m_pic_list.Add(pictureBox11);
+            m_pic_list.Add(pictureBox12);
+            m_pic_list.Add(pictureBox13);
+            m_pic_list.Add(pictureBox14);
+            m_pic_list.Add(pictureBox15);
+            m_pic_list.Add(pictureBox16);
+            m_pic_list.Add(pictureBox17);
+            m_pic_list.Add(pictureBox18);
+            m_pic_list.Add(pictureBox19);
+            m_pic_list.Add(pictureBox20);
             
             //Todo: 后面改成4*5的
             m_label_fx_param_list.Add(label_param1);
@@ -71,6 +82,17 @@ namespace FenXingFormDemo
             m_label_fx_param_list.Add(label_param9);
             m_label_fx_param_list.Add(label_param10);
 
+            m_label_fx_param_list.Add(label_param11);
+            m_label_fx_param_list.Add(label_param12);
+            m_label_fx_param_list.Add(label_param13);
+            m_label_fx_param_list.Add(label_param14);
+            m_label_fx_param_list.Add(label_param15);
+            m_label_fx_param_list.Add(label_param16);
+            m_label_fx_param_list.Add(label_param17);
+            m_label_fx_param_list.Add(label_param18);
+            m_label_fx_param_list.Add(label_param19);
+            m_label_fx_param_list.Add(label_param20);
+
             //Todo: 后面改成4*5的
             m_label_fx_seq_list.Add(label_fx1);
             m_label_fx_seq_list.Add(label_fx2);
@@ -83,6 +105,17 @@ namespace FenXingFormDemo
             m_label_fx_seq_list.Add(label_fx9);
             m_label_fx_seq_list.Add(label_fx10);
 
+            m_label_fx_seq_list.Add(label_fx11);
+            m_label_fx_seq_list.Add(label_fx12);
+            m_label_fx_seq_list.Add(label_fx13);
+            m_label_fx_seq_list.Add(label_fx14);
+            m_label_fx_seq_list.Add(label_fx15);
+            m_label_fx_seq_list.Add(label_fx16);
+            m_label_fx_seq_list.Add(label_fx17);
+            m_label_fx_seq_list.Add(label_fx18);
+            m_label_fx_seq_list.Add(label_fx19);
+            m_label_fx_seq_list.Add(label_fx20);
+
             LoadFxPicture(m_page_num);
         }
 
@@ -92,7 +125,7 @@ namespace FenXingFormDemo
         }
 
         /**
-         * 初始化图片库
+         * 初始化图片库，读入fx图片信息
          */
         public void InitFxImageList()
         {
@@ -101,6 +134,9 @@ namespace FenXingFormDemo
             m_img_list.InitFxImages();
         }
 
+        /// <summary>
+        /// 重置fx图片列表，不重新读入fx图片信息，只调整列表顺序
+        /// </summary>
         public void ResetFxImageList()
         {
 
@@ -113,18 +149,35 @@ namespace FenXingFormDemo
         /// </summary>
         public void InitPictureBox()
         {
+            int width_gap = 10;
+            int height_gap = 40;
+
+            int init_pic_left = m_pic_list[0].Left;
+            int init_pic_top = m_pic_list[0].Top;
             int pic_height = m_pic_list[0].Height;
             int pic_width = m_pic_list[0].Width;
+
+            int init_label_param_left = m_label_fx_param_list[0].Left;
+            int init_label_param_top = m_label_fx_param_list[0].Top;
+
+            int init_label_seq_left = m_label_fx_seq_list[0].Left;
+            int init_label_seq_top = m_label_fx_seq_list[0].Top;
 
             //设置图片控件的位置
             for (int i = 0; i < m_pic_row; i++)
             {
                 for (int j = 0; j < m_pic_col; j++)
                 {
-                    m_pic_list[j + i * m_pic_col].Left = 10 + j  * 20 + j * pic_width;
-                    m_pic_list[j + i * m_pic_col].Top = (i + 1) * 20 + i * pic_height;
+                    m_pic_list[j + i * m_pic_col].Left = init_pic_left + j *  width_gap + j * pic_width;
+                    m_pic_list[j + i * m_pic_col].Top = init_pic_top + i * height_gap + i * pic_height;
                     m_pic_list[j + i * m_pic_col].BackColor = Color.Transparent;
-                   // m_pic_list[j + i * m_pic_col].Show();
+
+
+                    m_label_fx_param_list[j + i * m_pic_col].Left = init_label_param_left + j * width_gap + j * pic_width;
+                    m_label_fx_param_list[j + i * m_pic_col].Top = init_label_param_top + i * height_gap + i * pic_height;
+
+                    m_label_fx_seq_list[j + i * m_pic_col].Left = init_label_seq_left + j * width_gap + j * pic_width;
+                    m_label_fx_seq_list[j + i * m_pic_col].Top = init_label_seq_top + i * height_gap + i * pic_height;
                 }
             }
         }
@@ -145,7 +198,7 @@ namespace FenXingFormDemo
 
             InitPictureBox();
 
-            //
+            //初始化图片框内容
             for (int i = 1; i <= pic_box_num; i++)
             {
                 FxImage fx_img = m_img_list.GetFxImage(i + (page_num - 1) * pic_box_num);
@@ -173,17 +226,12 @@ namespace FenXingFormDemo
 
             }
 
-            /*
-            String pic1_name = String.Format("{0}{1}{2}", m_pic_dir, page_num.ToString("D3"), ".jpg");
-
-            pictureBox1.Load(m_pic_dir + "001.jpg");
-            pictureBox1.Show();
-
-            */
 
         }
 
-
+        /// <summary>
+        /// 打乱图片顺序
+        /// </summary>
         public void ShuffleFxPicture()
         {
             m_img_list.ShuffleFxImages();

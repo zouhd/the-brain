@@ -12,8 +12,8 @@ namespace FenXingFormDemo
     public partial class ConsoleScreen : Form
     {
         private const int const_page_num = 1;
-        private const int const_pages = 2;
-        private int pic_row = 2;
+        private const int const_pages = 1;
+        private int pic_row = 4;
         private int pic_col = 5;
         private BigScreen m_big_screen;//大屏程序
 
@@ -31,6 +31,8 @@ namespace FenXingFormDemo
              * *******-B1等
              */
             m_big_screen = new BigScreen(const_page_num, const_pages, pic_row, pic_col);
+
+            UpdatePageAndButtonEnableStatus();
             //m_big_screen.InitFxImageList();
         }
 
@@ -80,6 +82,7 @@ namespace FenXingFormDemo
 
         private void button_next_Click(object sender, EventArgs e)
         {
+            
             m_big_screen.button_next_Click();
             UpdatePageAndButtonEnableStatus();
         }
