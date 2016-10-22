@@ -30,7 +30,7 @@ namespace FenXingFormDemo
          * 
          * Todo:根据实际情况调整参数
          **/
-        public BigScreen(int page_num, int pages, int pic_row = 1, int pic_col =5, String pic_dir = "..\\..\\pic\\",  String fx_id = "A1", int fx_img_num = 20)
+        public BigScreen(int page_num, int pages, int pic_row = 1, int pic_col =5, int fx_img_num = 60, String pic_dir = "..\\..\\pic\\",  String fx_id = "A1")
         {
             InitializeComponent();
             m_page_num = page_num;//默认第一页
@@ -168,15 +168,19 @@ namespace FenXingFormDemo
             {
                 for (int j = 0; j < m_pic_col; j++)
                 {
+                    //设置图片空间的起始位置
                     m_pic_list[j + i * m_pic_col].Left = init_pic_left + j *  width_gap + j * pic_width;
                     m_pic_list[j + i * m_pic_col].Top = init_pic_top + i * height_gap + i * pic_height;
                     m_pic_list[j + i * m_pic_col].BackColor = Color.Transparent;
 
-
+                    //设置fx文本控件起始位置
                     m_label_fx_param_list[j + i * m_pic_col].Left = init_label_param_left + j * width_gap + j * pic_width;
+                    //m_label_fx_param_list[j + i * m_pic_col].Left = m_pic_list[j + i * m_pic_col].Left +  (pic_width - m_label_fx_param_list[j + i * m_pic_col].Width) / 2;
                     m_label_fx_param_list[j + i * m_pic_col].Top = init_label_param_top + i * height_gap + i * pic_height;
 
+                    //设置seq文本控件起始位置
                     m_label_fx_seq_list[j + i * m_pic_col].Left = init_label_seq_left + j * width_gap + j * pic_width;
+                    //m_label_fx_seq_list[j + i * m_pic_col].Left = m_pic_list[j + i * m_pic_col].Left + (pic_width - m_label_fx_seq_list[j + i * m_pic_col].Width) / 2;
                     m_label_fx_seq_list[j + i * m_pic_col].Top = init_label_seq_top + i * height_gap + i * pic_height;
                 }
             }
@@ -190,12 +194,13 @@ namespace FenXingFormDemo
         {
             int pic_box_num = m_pic_col * m_pic_row;//PictureBox控件数量
 
+            /*
             //初始化所有图片框背景色
             for (int i = 1; i <= pic_box_num; i++)
             {
                 m_pic_list[i - 1].BackColor = Color.Transparent;
             }
-
+            */
             InitPictureBox();
 
             //初始化图片框内容
@@ -296,6 +301,9 @@ namespace FenXingFormDemo
                     //Todo:改成定时器方式，逐步移动到原来位置
                     Thread.Sleep(500);
 
+                    //m_pic_list[pic_num - 1].Width = origin_width * 2;
+                    //m_pic_list[pic_num - 1].Height = origin_height * 2;
+
                     int origin_width = m_pic_list[pic_num - 1].Width;
                     int origin_height = m_pic_list[pic_num - 1].Height;
 
@@ -304,12 +312,22 @@ namespace FenXingFormDemo
 
                     m_pic_list[pic_num - 1].Left = (panel_width - origin_width) / 2;
                     m_pic_list[pic_num - 1].Top = (panel_height - origin_height) / 2;
-                    /*
-                    m_pic_list[pic_num - 1].Width = origin_width * 2;
-                    m_pic_list[pic_num - 1].Height = origin_height * 2;*/
+                   
                     m_pic_list[pic_num - 1].BackColor = Color.Green;
 
                     m_pic_list[pic_num - 1].BringToFront();//放置在顶层
+
+                    m_label_fx_param_list[pic_num - 1].Left = (panel_width - origin_width) / 2 + 20;
+                    m_label_fx_param_list[pic_num - 1].Top = (panel_height + origin_height) / 2 - 30;
+                    //m_label_fx_param_list[pic_num - 1].Parent = m_pic_list[pic_num - 1];
+                    m_label_fx_param_list[pic_num - 1].BackColor = Color.Transparent;
+                    m_label_fx_param_list[pic_num - 1].BringToFront();
+
+                    m_label_fx_seq_list[pic_num - 1].Left = panel_width / 2 - 10;
+                    m_label_fx_seq_list[pic_num - 1].Top = (panel_height + origin_height) / 2;
+                    m_label_fx_seq_list[pic_num - 1].BringToFront();
+
+                    //this.Refresh();
                 }
 
 

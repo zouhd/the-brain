@@ -26,6 +26,8 @@ namespace FenXingFormDemo
             m_fx_y = fx_y;
 
             m_show_flag = true;//默认显示
+            //m_study_flag = false;//默认没被选手选中学习
+
             m_study_flag = false;//默认没被选手选中学习
 
             m_first_flag = false;
