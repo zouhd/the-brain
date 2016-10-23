@@ -11,11 +11,12 @@ namespace FenXingFormDemo
 {
     public partial class ConsoleScreen : Form
     {
-        private const int const_page_num = 1;//起始页
-        private const int const_pages = 3;
+        private int current_page_num = 1;//起始页
+        private int pages = 10;//分屏页数
         private int pic_row = 4;
         private int pic_col = 5;
-        private const int const_fx_img = 60;
+        private int fx_img_num = 200;//初始化fx图片数量
+
         private BigScreen m_big_screen;//大屏程序
 
         public ConsoleScreen()
@@ -31,21 +32,50 @@ namespace FenXingFormDemo
              * *******--A3
              * *******-B1等
              */
-            m_big_screen = new BigScreen(const_page_num, const_pages, pic_row, pic_col, const_fx_img);
-
-            UpdatePageAndButtonEnableStatus();
+            //m_big_screen = new BigScreen(current_page_num, pages, pic_row, pic_col, const_fx_img);
+            //UpdatePageAndButtonEnableStatus();
             //m_big_screen.InitFxImageList();
         }
 
         /// <summary>
-        /// 启动大屏
+        /// 启动分页大屏
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void button_launch_Click(object sender, EventArgs e)
         {
+
+            if (!Int32.TryParse(this.textBox_ps_page.Text.Trim(), out pages))
+            {
+                MessageBox.Show("请输入正确的页数.");
+                return;
+            }
+            if (!Int32.TryParse(this.textBox_ps_row.Text.Trim(), out pic_row))
+            {
+                MessageBox.Show("请输入正确的行值.");
+                return;
+            }
+            if (!Int32.TryParse(this.textBox_ps_col.Text.Trim(), out pic_col))
+            {
+                MessageBox.Show("请输入正确的列值.");
+                return;
+            }
+
+            if (!Int32.TryParse(this.textBox_fx_img_num.Text.Trim(), out fx_img_num))
+            {
+                MessageBox.Show("请输入正确的图片数量.");
+                return;
+            }
+
+            //m_big_screen.PIC_ROW = 
+            m_big_screen = new BigScreen(current_page_num, pages, pic_row, pic_col, fx_img_num);
+            UpdatePageAndButtonEnableStatus();
+
             m_big_screen.StartPosition = FormStartPosition.CenterScreen;
-            m_big_screen.LoadFxPicture(const_page_num);
+            m_big_screen.ClearComponent();
+
+            m_big_screen.InitializePagesScreen(pic_row, pic_col);
+            m_big_screen.LoadPageScreenFxPicture(1);
             m_big_screen.Show();
         }
 
@@ -57,20 +87,43 @@ namespace FenXingFormDemo
         private void button_reset_Click(object sender, EventArgs e)
         {
             m_big_screen.ResetFxImageList();
-            m_big_screen.LoadFxPicture(const_page_num);
+            m_big_screen.LoadPageScreenFxPicture(fx_img_num);
         }
 
 
         //Todo:后期改成去除图片按钮
         /// <summary>
-        /// 清理大屏图片控件
+        /// 启动全屏，照片平铺
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void button_clear_Click(object sender, EventArgs e)
+        private void button_launch_fs_Click(object sender, EventArgs e)
         {
+            int fs_col = 1;
+            int fs_row = 1;
+
+            if (!Int32.TryParse(this.textBox_fs_row.Text.Trim(), out fs_row))
+            {
+                MessageBox.Show("请输入正确的行值.");
+                return;
+            }
+            if (!Int32.TryParse(this.textBox_fs_col.Text.Trim(), out fs_col))
+            {
+                MessageBox.Show("请输入正确的列值.");
+                return;
+            }
+            if (!Int32.TryParse(this.textBox_fx_img_num.Text.Trim(), out fx_img_num))
+            {
+                MessageBox.Show("请输入正确的图片数量.");
+                return;
+            }
+
+            m_big_screen = new BigScreen(current_page_num, pages, fs_row, fs_col, fx_img_num);
+            m_big_screen.StartPosition = FormStartPosition.CenterScreen;
             m_big_screen.ClearComponent();
-            m_big_screen.InitializeMyComponent();
+            m_big_screen.InitializeFullScreen(fs_row, fs_col);
+            m_big_screen.LoadFullScreenFxPicture(fs_row * fs_col);
+            m_big_screen.Show();
         }
 
 
@@ -101,7 +154,7 @@ namespace FenXingFormDemo
                 button_pre.Enabled = true;
             }
 
-            if (currentPage >= const_pages)
+            if (currentPage >= pages)
             {
                 button_next.Enabled = false;
             }
@@ -144,6 +197,8 @@ namespace FenXingFormDemo
         {
             m_big_screen.ShuffleFxPicture();
         }
+
+
 
         
     }
