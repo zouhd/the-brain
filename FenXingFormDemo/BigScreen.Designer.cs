@@ -845,8 +845,10 @@ namespace FenXingFormDemo
             int init_label_seq_left = 60;
             int init_label_seq_top = 155;
 
-            this.Width = 800;
-            this.panel1.Width = 750;
+
+            this.Width = (width + width_gap) * pic_col + 60;// 1400;
+            this.panel1.Width = (width + width_gap) * pic_col + 40;// 1400;
+
 
             ClearComponent();
 
@@ -946,8 +948,8 @@ namespace FenXingFormDemo
             int init_label_seq_top = 155;
 
             //Todo:根据图片数量设置
-            this.Width = 1400;
-            this.panel1.Width = 1400;
+            this.Width = (width + width_gap) * pic_col + 60;// 1400;
+            this.panel1.Width = (width + width_gap) * pic_col + 40;// 1400;
 
 
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BigScreen));

@@ -12,8 +12,11 @@ namespace FenXingFormDemo
 {
     public partial class BigScreen : Form
     {
-        private int m_page_num;//当前显示第几页
+        private int m_page_num = 1;//当前显示第几页
         private int m_pages;//总共几页
+        private int m_pic_row;//分页屏图片控件行数
+        private int m_pic_col;//分页屏图片空间列数
+
         private String m_pic_dir;//存放图片的路径，图片base路径/题目编号
         private String m_fx_id;//分形题目编号
         private int m_fx_img_num;//分形图片数量
@@ -27,17 +30,51 @@ namespace FenXingFormDemo
         private List<Label> m_fs_label_param_list;//full screen标签
         private List<Label> m_fs_label_seq_list;//full screen标签
 
-        private int m_pic_row;//大屏图片控件行数
-        private int m_pic_col;//大屏图片空间列数
-
         private int m_fs_pic_row;//全屏图片行数
         private int m_fs_pic_col;//全屏图片列数
 
+        private int m_study_num = 0;//当前学习图片数量
+        private int m_study_max_num = 3;//最大学习图片数量
+        /// <summary>
+        /// 设置大屏的参数
+        /// </summary>
+        /// <param name="pages"></param>
+        /// <param name="ps_pic_row"></param>
+        /// <param name="ps_pic_col"></param>
+        /// <param name="fs_pic_row"></param>
+        /// <param name="fs_pic_col"></param>
+        /// <param name="fx_img_num"></param>
+        /// <param name="pic_dir"></param>
+        /// <param name="fx_id"></param>
+        public BigScreen(int pages, int ps_pic_row = 4, int ps_pic_col = 5, int fs_pic_row = 4, int fs_pic_col = 10, int fx_img_num = 40, String pic_dir = "..\\..\\pic\\", String fx_id = "A1")
+        {
+            InitializeComponent();
 
+            m_pages = pages;
+            m_pic_row = ps_pic_row;
+            m_pic_col = ps_pic_col;
+
+            m_fs_pic_row = fs_pic_row;
+            m_fs_pic_col = fs_pic_col;
+
+            m_fx_img_num = fx_img_num;
+
+            m_pic_dir = pic_dir;//设置存放图片的路径
+            m_fx_id = fx_id;//分形题目编号，A1,A2...
+            
+
+            m_img_list = new FxImageList(m_pic_dir, m_fx_id, m_fx_img_num);
+            InitFxImageList();
+
+        }
+
+        
         /***
          * 
-         * Todo:根据实际情况调整参数
+         * 初始化分页屏
          **/
+
+        /*
         public BigScreen(int page_num, int pages, int pic_row = 1, int pic_col =5, int fx_img_num = 40, String pic_dir = "..\\..\\pic\\",  String fx_id = "A1")
         {
             InitializeComponent();
@@ -53,7 +90,8 @@ namespace FenXingFormDemo
             m_pic_row = pic_row;
             m_pic_col = pic_col;
 
-
+        }
+         */
             /*
             m_ps_pic_list = new List<PictureBox>(m_pic_row * m_pic_col);
             m_ps_label_param_list = new List<Label>(m_pic_row * m_pic_col);
@@ -126,10 +164,7 @@ namespace FenXingFormDemo
             m_ps_label_seq_list.Add(label_fx20);
             */
 
-            
-            //InitializePagesScreen(4, 5, 130, 130, 5);
-            //LoadPageScreenFxPicture(m_page_num);
-        }
+
 
         public int PAGE_NUM
         {
@@ -187,7 +222,7 @@ namespace FenXingFormDemo
         }
 
         /// <summary>
-        /// 初始化图片控件位置
+        /// 初始化分页屏图片控件位置
         /// </summary>
         public void InitPageScreenPictureBox()
         {
@@ -274,39 +309,163 @@ namespace FenXingFormDemo
         /// 载入全屏图片
         /// </summary>
         /// <param name="pic_num"></param>
-        public void LoadFullScreenFxPicture(int pic_num)
+        /// /// <param name="check_show_flag">判断是否要检查show_flag标记</param>
+        public void LoadFullScreenFxPicture(int pic_num, bool check_show_flag = false)
         {
- 
+            FxImage fx_img;
+            String pic_name;
             //初始化图片框内容
-            for (int i = 1; i <= pic_num; i++)
+
+            if (!check_show_flag)
             {
-                FxImage fx_img = m_img_list.GetFxImage(i);
-
-                String pic_name =  fx_img.IMAGE_NAME;
-                m_fs_pic_list[i - 1].Load(pic_name);
-                m_fs_pic_list[i - 1].Show();
-
-                //选手学过的图片高亮显示
-                if (fx_img.STUDY_FLAG == true)
+                for (int i = 1; i <= pic_num; i++)
                 {
-                    m_fs_pic_list[i - 1].BackColor = Color.Green;
-                    m_fs_pic_list[i - 1].BringToFront();
-                    m_fs_label_param_list[i - 1].Text = String.Format("x: {0}, y: {1}", fx_img.FX_X, fx_img.FX_Y);
-                    m_fs_label_param_list[i - 1].BringToFront();
+                    fx_img = m_img_list.GetFxImage(i);
+
+
+                    pic_name = fx_img.IMAGE_NAME;
+                    m_fs_pic_list[i - 1].Load(pic_name);
+                    m_fs_pic_list[i - 1].Show();
+
+                    //选手学过的图片高亮显示
+                    if (fx_img.STUDY_FLAG == true)
+                    {
+                        m_fs_pic_list[i - 1].BackColor = Color.Green;
+                        m_fs_pic_list[i - 1].BringToFront();
+                        m_fs_label_param_list[i - 1].Text = String.Format("x: {0}, y: {1}", fx_img.FX_X, fx_img.FX_Y);
+                        m_fs_label_param_list[i - 1].BringToFront();
+                    }
+                    else
+                    {
+                        m_fs_pic_list[i - 1].BackColor = Color.Transparent;
+                        m_fs_label_param_list[i - 1].Text = "";
+                    }
+
+                    m_fs_label_seq_list[i - 1].Text = fx_img.SEQ_NUM.ToString();
                 }
-                else
+            }
+            else
+            {
+                
+                for (int i = 1; i <= pic_num; i++)
                 {
-                    m_fs_pic_list[i - 1].BackColor = Color.Transparent;
-                    m_fs_label_param_list[i - 1].Text = "";
+                    fx_img = m_img_list.GetFxImage(i);
+
+                    if (fx_img.SHOW_FLAG)
+                    {
+                        pic_name = fx_img.IMAGE_NAME;
+                        m_fs_pic_list[i - 1].Load(pic_name);
+                        m_fs_pic_list[i - 1].BackColor = Color.Transparent;
+                        m_fs_pic_list[i - 1].Show();
+                        m_fs_label_param_list[i - 1].Text = String.Format("x: {0}, y: {1}", fx_img.FX_X, fx_img.FX_Y);
+                        m_fs_label_param_list[i - 1].BringToFront();
+                        m_fs_label_seq_list[i - 1].Text = fx_img.SEQ_NUM.ToString();
+                    } 
+                    
                 }
-                
-                m_fs_label_seq_list[i - 1].Text = fx_img.SEQ_NUM.ToString();
-                
+            }
+        }
+
+        /// <summary>
+        /// 删除部分图片后，调整展示
+        /// </summary>
+        /// <param name="pic_num"></param>
+        public void AdjustFullScreenFxPicture(int pic_num)
+        {
+            int pic_count = 0;
+            int fx_count = 0;
+
+
+            while (pic_count < pic_num)
+            {            
+                while (fx_count < m_fx_img_num)
+                {
+                    FxImage fx_img = m_img_list.GetFxImage(fx_count + 1);
+                    if (fx_img.SHOW_FLAG)
+                    { 
+                        String pic_name = fx_img.IMAGE_NAME;
+                        m_fs_pic_list[pic_count].Load(pic_name);
+                        m_fs_pic_list[pic_count].Show();
+
+                        m_fs_label_param_list[pic_count].Text = String.Format("x: {0}, y: {1}", fx_img.FX_X, fx_img.FX_Y);
+                        m_fs_label_param_list[pic_count].Visible = false;
+                        m_fs_label_param_list[pic_count].BringToFront();//Todo:容易忘的bringtofront，这是一个坑
+
+                        m_fs_label_seq_list[pic_count].Text = fx_img.SEQ_NUM.ToString();
+                        m_fs_label_seq_list[pic_count].Visible = false;
+                        fx_count++;
+                        break;
+                    }
+                    else
+                    {
+                        fx_count++;
+                    }
+                }
+
+                pic_count++;
+            }
+
+            for (int i = pic_num; i < m_fx_img_num; i++)
+            {
+                m_fs_pic_list[i].Image = null;
+                m_fs_label_param_list[i].Text = "";
+                m_fs_label_seq_list[i].Text = "";
+            }
+
+        }
+
+        /// <summary>
+        /// 设置文本显示特性
+        /// </summary>
+        /// <param name="show_text"></param>
+        public void ShowText(bool show_text)
+        {
+
+            for (int i = 0; i < m_fx_img_num; i++)
+            {
+                m_fs_label_param_list[i].Visible = show_text;
+                m_fs_label_seq_list[i].Visible = show_text;
+            }
+
+        }
+        /// <summary>
+        /// 随机删除一些图片
+        /// </summary>
+        /// <param name="remove_num"></param>
+        public void RandomRemove(int remove_num)
+        {
+
+            List<int> remove_index = m_img_list.RandomRemove(remove_num);
+
+            //先删除选手已学习的图片
+            for (int i = 0; i < m_fx_img_num; i++)
+            {
+                if (m_img_list.GetFxImage(i + 1).SHOW_FLAG == false)
+                {
+                    m_fs_pic_list[i].Image = null;
+                    
+                    m_fs_label_param_list[i].Text = "";
+                    m_fs_label_seq_list[i].Text = "";
+
+                    m_fs_pic_list[i].BackColor = Color.Blue;
+                    Thread.Sleep(50);
+                    m_fs_pic_list[i].BackColor = Color.Transparent;
+                }
+            }
+
+            foreach (int index in remove_index)
+            {
+                m_img_list.GetFxImage(index + 1).SHOW_FLAG = false;
+
+                m_fs_pic_list[index].Image = null;
+                m_fs_label_param_list[index].Text = "";
+                m_fs_label_seq_list[index].Text = "";
 
             }
 
-
+            this.Refresh();
         }
+
         /// <summary>
         /// 打乱图片顺序
         /// </summary>
@@ -314,7 +473,29 @@ namespace FenXingFormDemo
         {
             m_img_list.ShuffleFxImages();
 
-            LoadPageScreenFxPicture(m_page_num);
+            m_img_list.CreateFinalFxList();
+            int final_fx_count = m_img_list.GetFinalFxCount();
+            FxImage img;
+            for (int i = 0; i < final_fx_count; i++)
+            {
+                img = m_img_list.GetFinalFxImage(i);
+
+                m_fs_pic_list[i].Load(img.IMAGE_NAME);
+                m_fs_pic_list[i].Show();
+
+                m_fs_label_param_list[i].Text = String.Format("x: {0}, y: {1}", img.FX_X, img.FX_Y);
+                m_fs_label_param_list[i].Visible = false;
+
+                m_fs_label_seq_list[i].Text = img.SEQ_NUM.ToString();
+                m_fs_label_seq_list[i].Visible = false;
+
+                
+            }
+
+            this.Refresh();
+
+
+
         }
         /**
          * 上一页按钮
@@ -360,6 +541,8 @@ namespace FenXingFormDemo
                 //选手选择学习图片
                 bool flag = m_img_list.ChooseImage(pic_num);
 
+                m_study_num++;
+
                 //载入分形图片
                 LoadPageScreenFxPicture(page_num);
                 this.Refresh();
@@ -367,6 +550,7 @@ namespace FenXingFormDemo
                 if (flag)
                 {
                     //Todo:改成定时器方式，逐步移动到原来位置
+                    /*
                     Thread.Sleep(500);
 
                     //m_ps_pic_list[pic_num - 1].Width = origin_width * 2;
@@ -380,7 +564,7 @@ namespace FenXingFormDemo
 
                     m_ps_pic_list[pic_box_num - 1].Left = (panel_width - origin_width) / 2;
                     m_ps_pic_list[pic_box_num - 1].Top = (panel_height - origin_height) / 2;
-
+                    
                     m_ps_pic_list[pic_box_num - 1].BackColor = Color.Green;
 
                     m_ps_pic_list[pic_box_num - 1].BringToFront();//放置在顶层
@@ -394,7 +578,9 @@ namespace FenXingFormDemo
                     m_ps_label_seq_list[pic_box_num - 1].Left = panel_width / 2 - 10;
                     m_ps_label_seq_list[pic_box_num - 1].Top = (panel_height + origin_height) / 2;
                     m_ps_label_seq_list[pic_box_num - 1].BringToFront();
+                    */
 
+                    m_ps_pic_list[pic_box_num - 1].BackColor = Color.Green;
                     //this.Refresh();
                 }
 

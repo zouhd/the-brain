@@ -9,7 +9,8 @@ namespace FenXingFormDemo
 {
     class FxImageList
     {
-        private List<FxImage> m_fx_list;
+        private List<FxImage> m_fx_list;//初始fx图片列表
+        private List<FxImage> m_question_fx_list;//提问的fx图片列表
         private String m_base_dir;//存放分形图片的目录
         private String m_fx_id;//分形式样名称（16个之一），A1，A2，A3
         private int m_fx_image_num;//分形图片数量
@@ -77,12 +78,14 @@ namespace FenXingFormDemo
                 {
                     img.STUDY_FLAG = true;//默认第一张和最后一张图片学习
                     img.FIRST_FLAG = true;
+                    img.SHOW_FLAG = false;
                     
                 }
                 if (i == 1 || i == m_fx_image_num)
                 {
                     img.STUDY_FLAG = true;//默认第一张和最后一张图片学习
                     img.LAST_FLAG = true;//
+                    img.SHOW_FLAG = false;
                 }
 
                 m_fx_list.Add(img);
@@ -149,6 +152,7 @@ namespace FenXingFormDemo
             if (m_fx_study_num < m_fx_study_max_num)
             {
                 m_fx_list[selected_num - 1].STUDY_FLAG = true;
+                m_fx_list[selected_num - 1].SHOW_FLAG = false;
                 m_fx_study_num++;
                 flag = true;
             }
@@ -188,6 +192,67 @@ namespace FenXingFormDemo
                 }
             }
 
+        }
+
+        /// <summary>
+        /// 随机删除num个元素
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
+        public List<int> RandomRemove(int remove_num)
+        {
+            List<int> remove_list = new List<int>();
+
+            Random r = new Random(DateTime.Now.Millisecond);
+
+            int index = 0;
+            int count = 0;
+            FxImage temp = null;
+
+            
+            while (count < remove_num)
+            {
+                index = r.Next(0, m_fx_image_num);
+
+                if (!remove_list.Contains(index) && index != 0 && index != m_fx_image_num - 1)
+                {
+                    temp = m_fx_list[index];
+                    if (!temp.FIRST_FLAG && !temp.LAST_FLAG && !temp.STUDY_FLAG)
+                    {
+                        remove_list.Add(index);
+                        temp.SHOW_FLAG = false;
+
+                        count++;
+                    }
+                }
+            }
+
+            return remove_list;
+        }
+
+        /// <summary>
+        /// 获取最后提问的fx图片清单
+        /// </summary>
+        /// <returns></returns>
+        public void CreateFinalFxList()
+        {
+            m_question_fx_list = new List<FxImage>();
+
+            for (int i = 0; i < m_fx_image_num; i++)
+            {
+                if (m_fx_list[i].SHOW_FLAG)
+                    m_question_fx_list.Add(m_fx_list[i]);
+            }
+        }
+
+        public int GetFinalFxCount()
+        {
+            return m_question_fx_list.Count;
+        }
+
+        public FxImage GetFinalFxImage(int index)
+        {
+            return m_question_fx_list[index];
         }
 
     }
