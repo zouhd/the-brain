@@ -69,8 +69,8 @@ namespace FenXingFormDemo
             {
 
                 String pic_name = String.Format("{0}{1}\\{2}{3}", m_base_dir, m_fx_id, i.ToString("D3"), ".jpg");
-                
-                FxImage img = new FxImage(pic_name, i, i * 2, i *3);
+                String blur_pic_name = String.Format("{0}{1}\\{2}{3}", m_base_dir, m_fx_id, i.ToString("D3"), "_blur.jpg");
+                FxImage img = new FxImage(pic_name, blur_pic_name, i, i * 2, i * 3);
                 
                 //初始化fx图片数据
                 //Todo: 对第一张图片和最后一张图片处理
@@ -151,10 +151,13 @@ namespace FenXingFormDemo
             bool flag = false;
             if (m_fx_study_num < m_fx_study_max_num)
             {
-                m_fx_list[selected_num - 1].STUDY_FLAG = true;
-                m_fx_list[selected_num - 1].SHOW_FLAG = false;
-                m_fx_study_num++;
-                flag = true;
+                if (selected_num > 0 && selected_num <= m_fx_image_num)
+                {
+                    m_fx_list[selected_num - 1].STUDY_FLAG = true;
+                    m_fx_list[selected_num - 1].SHOW_FLAG = false;
+                    m_fx_study_num++;
+                    flag = true;
+                }
             }
 
             return flag;

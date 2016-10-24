@@ -9,6 +9,7 @@ namespace FenXingFormDemo
     class FxImage
     {
         private String m_image_name;//分形图片名称,A1_001.jpg,A1表示分形题号，001表示分形截图。
+        private String m_blur_image_name;//模糊处理的图片名称
         private int m_seq_num;//图片编号
         private int m_fx_x;//分形函数参数x
         private int m_fx_y;//分形函数参数y
@@ -17,10 +18,10 @@ namespace FenXingFormDemo
         private Boolean m_study_flag;//是否被选手选中学习
         private Boolean m_first_flag;//第一张图片标记
         private Boolean m_last_flag;//最后一张图片标记
-        public FxImage(String image_name, int seq_num, int fx_x, int fx_y)
+        public FxImage(String image_name, String blur_image_name, int seq_num, int fx_x, int fx_y)
         {
- 
             m_image_name = image_name;
+            m_blur_image_name = blur_image_name;
             m_seq_num = seq_num;
             m_fx_x = fx_x;
             m_fx_y = fx_y;
@@ -38,6 +39,12 @@ namespace FenXingFormDemo
         {
             get { return m_image_name; }
             set { m_image_name = value; }
+        }
+
+        public String BLUR_IMAGE_NAME
+        {
+            get { return m_blur_image_name; }
+            set { m_blur_image_name = value; }
         }
 
         public int SEQ_NUM

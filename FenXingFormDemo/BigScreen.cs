@@ -282,21 +282,23 @@ namespace FenXingFormDemo
                 m_ps_pic_list[i - 1].Load(pic_name);
                 m_ps_pic_list[i - 1].Show();
 
+                m_ps_label_param_list[i - 1].Text = String.Format("x: {0}, y: {1}", fx_img.FX_X, fx_img.FX_Y);
+                m_ps_label_seq_list[i - 1].Text = fx_img.SEQ_NUM.ToString();
+
                 //选手学过的图片高亮显示
                 if (fx_img.STUDY_FLAG == true)
                 {
                     m_ps_pic_list[i - 1].BackColor = Color.Green;
                     m_ps_pic_list[i - 1].BringToFront();
-                    m_ps_label_param_list[i - 1].Text = String.Format("x: {0}, y: {1}", fx_img.FX_X, fx_img.FX_Y);
+
+                    m_ps_label_param_list[i - 1].Visible = true;
                     m_ps_label_param_list[i - 1].BringToFront();
                 }
                 else
                 {
                     m_ps_pic_list[i - 1].BackColor = Color.Transparent;
-                    m_ps_label_param_list[i - 1].Text = "";
+                    m_ps_label_param_list[i - 1].Visible = false;
                 }
-                
-                m_ps_label_seq_list[i - 1].Text = fx_img.SEQ_NUM.ToString();
                 
 
             }
@@ -324,24 +326,33 @@ namespace FenXingFormDemo
 
 
                     pic_name = fx_img.IMAGE_NAME;
-                    m_fs_pic_list[i - 1].Load(pic_name);
-                    m_fs_pic_list[i - 1].Show();
+                    //m_fs_pic_list[i - 1].Load(pic_name);
+                    m_fs_pic_list[i - 1].UseWaitCursor = true;
+                    m_fs_pic_list[i - 1].WaitOnLoad = false;
+                    m_fs_pic_list[i - 1].LoadCompleted += new AsyncCompletedEventHandler(pictureBox_LoadCompleted);
+                    m_fs_pic_list[i - 1].LoadAsync(pic_name);
+
+                    //m_fs_pic_list[i - 1].Show();
+
+                    m_fs_label_param_list[i - 1].Text = String.Format("x: {0}, y: {1}", fx_img.FX_X, fx_img.FX_Y);
+                    m_fs_label_seq_list[i - 1].Text = fx_img.SEQ_NUM.ToString();
 
                     //选手学过的图片高亮显示
                     if (fx_img.STUDY_FLAG == true)
                     {
                         m_fs_pic_list[i - 1].BackColor = Color.Green;
-                        m_fs_pic_list[i - 1].BringToFront();
-                        m_fs_label_param_list[i - 1].Text = String.Format("x: {0}, y: {1}", fx_img.FX_X, fx_img.FX_Y);
+                        m_fs_pic_list[i - 1].SendToBack();
+                        m_fs_label_param_list[i - 1].Visible = true;
+                        m_fs_label_param_list[i - 1].BackColor = Color.Transparent;
                         m_fs_label_param_list[i - 1].BringToFront();
                     }
                     else
                     {
                         m_fs_pic_list[i - 1].BackColor = Color.Transparent;
-                        m_fs_label_param_list[i - 1].Text = "";
+                        m_fs_label_param_list[i - 1].Visible = false;
                     }
 
-                    m_fs_label_seq_list[i - 1].Text = fx_img.SEQ_NUM.ToString();
+                    
                 }
             }
             else
@@ -530,65 +541,76 @@ namespace FenXingFormDemo
 
         /***
          * 选中制定页，制定编码图片
-         * Todo: 已选择的图片保持绿底
+         * 
          */
         public void button_select_Click(int page_num, int pic_num)
         {
-            int pic_box_num = pic_num % (m_pic_col * m_pic_row);
             //加载选手选择的页面
-            if (page_num <= m_pages && page_num > 0)
+            if (page_num <= m_pages && page_num > 0 && pic_num <= m_fx_img_num)
             {
-                //选手选择学习图片
-                bool flag = m_img_list.ChooseImage(pic_num);
+                int pic_box_num = m_pic_col * m_pic_row;//分页屏PictureBox控件数量
+                int select_pic_box_num = pic_num % (m_pic_col * m_pic_row);//1号-20号
 
-                m_study_num++;
+                InitPageScreenPictureBox();
 
-                //载入分形图片
-                LoadPageScreenFxPicture(page_num);
-                this.Refresh();
+                m_img_list.ChooseImage(pic_num);
 
-                if (flag)
+                //初始化图片框内容
+                FxImage fx_img;
+                String pic_name, blur_pic_name;
+                for (int i = 1; i <= pic_box_num; i++)
                 {
-                    //Todo:改成定时器方式，逐步移动到原来位置
-                    /*
-                    Thread.Sleep(500);
+                    fx_img = m_img_list.GetFxImage(i + (page_num - 1) * pic_box_num);
+                    pic_name = fx_img.IMAGE_NAME;
+                    blur_pic_name = fx_img.BLUR_IMAGE_NAME;
 
-                    //m_ps_pic_list[pic_num - 1].Width = origin_width * 2;
-                    //m_ps_pic_list[pic_num - 1].Height = origin_height * 2;
+                    //选中的图片
+                    if (i == select_pic_box_num)
+                    {
+                        m_ps_pic_list[i - 1].Load(pic_name);
+                        m_ps_pic_list[i - 1].Show();
 
-                    int origin_width = m_ps_pic_list[pic_box_num - 1].Width;
-                    int origin_height = m_ps_pic_list[pic_box_num - 1].Height;
+                    }
+                    else//非选中的图片
+                    {
+                        m_ps_pic_list[i - 1].Load(blur_pic_name);
+                        m_ps_pic_list[i - 1].Show();
+                    }
 
-                    int panel_width = panel1.Width;
-                    int panel_height = panel1.Height;
+                    //选手学过的图片高亮显示
+                    if (fx_img.STUDY_FLAG == true)
+                    {
+                        m_ps_pic_list[i - 1].BackColor = Color.Green;
+                        m_ps_label_param_list[i - 1].Text = String.Format("x: {0}, y: {1}", fx_img.FX_X, fx_img.FX_Y);
+                        m_ps_label_param_list[i - 1].Visible = true;
+                        m_ps_label_param_list[i - 1].BringToFront();
+                    }
+                    else
+                    {
+                        m_ps_pic_list[i - 1].BackColor = Color.Transparent;
+                        m_ps_label_param_list[i - 1].Text = String.Format("x: {0}, y: {1}", fx_img.FX_X, fx_img.FX_Y);
+                        m_ps_label_param_list[i - 1].Visible = false;
+                    }
 
-                    m_ps_pic_list[pic_box_num - 1].Left = (panel_width - origin_width) / 2;
-                    m_ps_pic_list[pic_box_num - 1].Top = (panel_height - origin_height) / 2;
-                    
-                    m_ps_pic_list[pic_box_num - 1].BackColor = Color.Green;
+                    //显示序号
+                    m_ps_label_seq_list[i - 1].Text = fx_img.SEQ_NUM.ToString();
 
-                    m_ps_pic_list[pic_box_num - 1].BringToFront();//放置在顶层
+                    this.Refresh();
 
-                    m_ps_label_param_list[pic_box_num - 1].Left = (panel_width - origin_width) / 2 + 20;
-                    m_ps_label_param_list[pic_box_num - 1].Top = (panel_height + origin_height) / 2 - 30;
-                    //m_ps_label_param_list[pic_num - 1].Parent = m_ps_pic_list[pic_num - 1];
-                    m_ps_label_param_list[pic_box_num - 1].BackColor = Color.Transparent;
-                    m_ps_label_param_list[pic_box_num - 1].BringToFront();
-
-                    m_ps_label_seq_list[pic_box_num - 1].Left = panel_width / 2 - 10;
-                    m_ps_label_seq_list[pic_box_num - 1].Top = (panel_height + origin_height) / 2;
-                    m_ps_label_seq_list[pic_box_num - 1].BringToFront();
-                    */
-
-                    m_ps_pic_list[pic_box_num - 1].BackColor = Color.Green;
-                    //this.Refresh();
                 }
-
 
             }
 
+
         }
 
+        private void pictureBox_LoadCompleted(object sender, AsyncCompletedEventArgs e)
+        {
 
+            
+            PictureBox pi = (PictureBox)sender;
+            //恢复光标
+            pi.UseWaitCursor = false;
+        }
     }
 }

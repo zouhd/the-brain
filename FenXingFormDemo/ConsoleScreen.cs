@@ -286,10 +286,5 @@ namespace FenXingFormDemo
             m_big_screen.ShowText(show_text);
         }
 
-        
-
-
-
-        
     }
 }
