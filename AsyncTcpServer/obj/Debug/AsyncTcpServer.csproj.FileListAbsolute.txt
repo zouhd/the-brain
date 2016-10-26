@@ -1,0 +1,6 @@
+D:\临时项目\Repository\the-brain\AsyncTcpServer\bin\Debug\AsyncTcpServer.exe.config
+D:\临时项目\Repository\the-brain\AsyncTcpServer\bin\Debug\AsyncTcpServer.exe
+D:\临时项目\Repository\the-brain\AsyncTcpServer\bin\Debug\AsyncTcpServer.pdb
+D:\临时项目\Repository\the-brain\AsyncTcpServer\obj\Debug\AsyncTcpServer.csprojResolveAssemblyReference.cache
+D:\临时项目\Repository\the-brain\AsyncTcpServer\obj\Debug\AsyncTcpServer.exe
+D:\临时项目\Repository\the-brain\AsyncTcpServer\obj\Debug\AsyncTcpServer.pdb
