@@ -1,9 +1,9 @@
 D:\临时项目\Repository\the-brain\FenXingFormDemo\bin\Debug\FenXingFormDemo.exe
 D:\临时项目\Repository\the-brain\FenXingFormDemo\bin\Debug\FenXingFormDemo.pdb
 D:\临时项目\Repository\the-brain\FenXingFormDemo\obj\x86\Debug\FenXingFormDemo.csprojResolveAssemblyReference.cache
-D:\临时项目\Repository\the-brain\FenXingFormDemo\obj\x86\Debug\FenXingFormDemo.BigScreen.resources
 D:\临时项目\Repository\the-brain\FenXingFormDemo\obj\x86\Debug\FenXingFormDemo.ConsoleScreen.resources
 D:\临时项目\Repository\the-brain\FenXingFormDemo\obj\x86\Debug\FenXingFormDemo.Properties.Resources.resources
 D:\临时项目\Repository\the-brain\FenXingFormDemo\obj\x86\Debug\FenXingFormDemo.csproj.GenerateResource.Cache
 D:\临时项目\Repository\the-brain\FenXingFormDemo\obj\x86\Debug\FenXingFormDemo.exe
 D:\临时项目\Repository\the-brain\FenXingFormDemo\obj\x86\Debug\FenXingFormDemo.pdb
+D:\临时项目\Repository\the-brain\FenXingFormDemo\obj\x86\Debug\FenXingFormDemo.BigScreen.resources
