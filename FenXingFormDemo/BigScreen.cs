@@ -35,6 +35,8 @@ namespace FenXingFormDemo
 
         private int m_study_num = 0;//当前学习图片数量
         private int m_study_max_num = 3;//最大学习图片数量
+
+        private int m_study_time = 3;//学习3秒钟
         /// <summary>
         /// 设置大屏的参数
         /// </summary>
@@ -49,6 +51,8 @@ namespace FenXingFormDemo
         public BigScreen(int pages, int ps_pic_row = 4, int ps_pic_col = 5, int fs_pic_row = 4, int fs_pic_col = 10, int fx_img_num = 40, String pic_dir = "..\\..\\pic\\", String fx_id = "A1")
         {
             InitializeComponent();
+
+           
 
             m_pages = pages;
             m_pic_row = ps_pic_row;
@@ -423,6 +427,13 @@ namespace FenXingFormDemo
                 m_fs_label_seq_list[i].Text = "";
             }
 
+            /*
+            this.m_fs_pic_list[0].SizeMode = PictureBoxSizeMode.Zoom;
+            this.m_fs_pic_list[0].BackColor = Color.Gray;
+            this.m_fs_pic_list[0].Height = (int)(this.m_fs_pic_list[0].Height * 1.5);
+            this.m_fs_pic_list[0].Width = (int)(this.m_fs_pic_list[0].Width * 1.5);
+        
+             */ 
         }
 
         /// <summary>
@@ -474,6 +485,7 @@ namespace FenXingFormDemo
 
             }
 
+            
             this.Refresh();
         }
 
@@ -555,6 +567,14 @@ namespace FenXingFormDemo
 
                 m_img_list.ChooseImage(pic_num);
 
+
+                //设置学习时间
+                timer1.Interval = 1000;
+                timer1.Enabled = true;
+                m_study_time = 3;
+                timer1.Start();
+                timer1.Tag = pic_num;
+
                 //初始化图片框内容
                 FxImage fx_img;
                 String pic_name, blur_pic_name;
@@ -611,6 +631,37 @@ namespace FenXingFormDemo
             PictureBox pi = (PictureBox)sender;
             //恢复光标
             pi.UseWaitCursor = false;
+        }
+
+        private void BigScreen_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// 时间事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (m_study_time > 0)
+            {
+                m_study_time--;
+                
+            }
+            else
+            {
+                System.Windows.Forms.Timer t = (System.Windows.Forms.Timer)sender;
+                int img_num = (int)t.Tag;
+                int select_pic_box_num = img_num % (m_pic_col * m_pic_row);//1号-20号
+
+                timer1.Enabled = false;
+                timer1.Stop();
+
+                FxImage img = m_img_list.GetFxImage(img_num);
+                m_ps_pic_list[select_pic_box_num - 1].Load(img.BLUR_IMAGE_NAME);
+            }
         }
     }
 }

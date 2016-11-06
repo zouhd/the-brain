@@ -72,7 +72,9 @@ namespace FenXingFormDemo
         /// <param name="e"></param>
         private void button_launch_fs_Click(object sender, EventArgs e)
         {
-            m_big_screen.StartPosition = FormStartPosition.CenterScreen;
+            //m_big_screen.StartPosition = FormStartPosition.CenterScreen;
+            m_big_screen.Left = 0;
+            m_big_screen.Top = 0;
             m_big_screen.ClearComponent();
             m_big_screen.InitializeFullScreen(fs_pic_row, fs_pic_col);
             m_big_screen.LoadFullScreenFxPicture(fs_pic_row * fs_pic_col);
@@ -82,6 +84,8 @@ namespace FenXingFormDemo
             this.button_adjust.Enabled = true;
             this.button_text.Enabled = true;
             this.button_rand.Enabled = true;
+
+            
 
         }
 
@@ -98,6 +102,7 @@ namespace FenXingFormDemo
 
             show_text = false;
             button_text.Text = "显示文本";
+
 
             
         }
@@ -236,6 +241,8 @@ namespace FenXingFormDemo
                 return;
             }
 
+
+            MessageBox.Show( Screen.PrimaryScreen.Bounds.Width.ToString() + ":" + Screen.PrimaryScreen.Bounds.Height.ToString());
             m_big_screen = new BigScreen(ps_pages, ps_pic_row, ps_pic_col, fs_pic_row, fs_pic_col, fx_img_num);
 
             this.button_launch_ps.Enabled = true;
@@ -262,6 +269,7 @@ namespace FenXingFormDemo
         {
             //Todo:随机删除指定数量的图片
             m_big_screen.RandomRemove(const_remove);
+
         }
 
         /// <summary>
