@@ -7,3 +7,13 @@ D:\临时项目\Repository\the-brain\FenXingFormDemo\obj\x86\Debug\FenXingFormDe
 D:\临时项目\Repository\the-brain\FenXingFormDemo\obj\x86\Debug\FenXingFormDemo.exe
 D:\临时项目\Repository\the-brain\FenXingFormDemo\obj\x86\Debug\FenXingFormDemo.pdb
 D:\临时项目\Repository\the-brain\FenXingFormDemo\obj\x86\Debug\FenXingFormDemo.BigScreen.resources
+D:\临时项目\Repository\the-brain\FenXingFormDemo\bin\Debug\Interop.APlayer3Lib.dll
+D:\临时项目\Repository\the-brain\FenXingFormDemo\bin\Debug\AxInterop.APlayer3Lib.dll
+D:\临时项目\Repository\the-brain\FenXingFormDemo\obj\x86\Debug\Interop.APlayer3Lib.dll
+D:\临时项目\Repository\the-brain\FenXingFormDemo\obj\x86\Debug\AxInterop.APlayer3Lib.dll
+D:\临时项目\Repository\the-brain\FenXingFormDemo\obj\x86\Debug\FenXingFormDemo.csproj.ResolveComReference.cache
+D:\临时项目\Repository\the-brain\FenXingFormDemo\obj\x86\Debug\FenXingFormDemo.TopicScreen.resources
+D:\临时项目\Repository\the-brain\FenXingFormDemo\obj\x86\Debug\Interop.WMPLib.dll
+D:\临时项目\Repository\the-brain\FenXingFormDemo\obj\x86\Debug\AxInterop.WMPLib.dll
+D:\临时项目\Repository\the-brain\FenXingFormDemo\bin\Debug\Interop.WMPLib.dll
+D:\临时项目\Repository\the-brain\FenXingFormDemo\bin\Debug\AxInterop.WMPLib.dll

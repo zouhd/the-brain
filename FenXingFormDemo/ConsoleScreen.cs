@@ -258,6 +258,9 @@ namespace FenXingFormDemo
             //Todo:可以改成true,这样用户可以随意设置大屏大小
             this.button_set.Enabled = false;
 
+
+            TopicScreen s = new TopicScreen();
+            s.Show();
         }
 
         /// <summary>
