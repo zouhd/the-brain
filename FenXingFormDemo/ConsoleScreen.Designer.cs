@@ -58,15 +58,25 @@
             this.button_rand = new System.Windows.Forms.Button();
             this.button_text = new System.Windows.Forms.Button();
             this.button_shuffle = new System.Windows.Forms.Button();
-            this.button_launch_fs = new System.Windows.Forms.Button();
             this.button_adjust = new System.Windows.Forms.Button();
+            this.button_launch_fs = new System.Windows.Forms.Button();
             this.tabPage_cast_screen = new System.Windows.Forms.TabPage();
             this.tabPage_player_screen = new System.Windows.Forms.TabPage();
+            this.tabPage_topic = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
+            this.textBox_x = new System.Windows.Forms.TextBox();
+            this.textBox_y = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.tabControl_setting.SuspendLayout();
             this.tabPage_big_screen.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.tabPage_topic.SuspendLayout();
             this.SuspendLayout();
             // 
             // button_launch_ps
@@ -82,6 +92,7 @@
             // 
             // tabControl_setting
             // 
+            this.tabControl_setting.Controls.Add(this.tabPage_topic);
             this.tabControl_setting.Controls.Add(this.tabPage_big_screen);
             this.tabControl_setting.Controls.Add(this.tabPage_cast_screen);
             this.tabControl_setting.Controls.Add(this.tabPage_player_screen);
@@ -377,6 +388,17 @@
             this.button_shuffle.UseVisualStyleBackColor = true;
             this.button_shuffle.Click += new System.EventHandler(this.button_shuffle_Click);
             // 
+            // button_adjust
+            // 
+            this.button_adjust.Enabled = false;
+            this.button_adjust.Location = new System.Drawing.Point(191, 20);
+            this.button_adjust.Name = "button_adjust";
+            this.button_adjust.Size = new System.Drawing.Size(75, 23);
+            this.button_adjust.TabIndex = 1;
+            this.button_adjust.Text = "调整大屏";
+            this.button_adjust.UseVisualStyleBackColor = true;
+            this.button_adjust.Click += new System.EventHandler(this.button_adjust_Click);
+            // 
             // button_launch_fs
             // 
             this.button_launch_fs.Enabled = false;
@@ -388,17 +410,6 @@
             this.button_launch_fs.Text = "启动全屏";
             this.button_launch_fs.UseVisualStyleBackColor = true;
             this.button_launch_fs.Click += new System.EventHandler(this.button_launch_fs_Click);
-            // 
-            // button_adjust
-            // 
-            this.button_adjust.Enabled = false;
-            this.button_adjust.Location = new System.Drawing.Point(191, 20);
-            this.button_adjust.Name = "button_adjust";
-            this.button_adjust.Size = new System.Drawing.Size(75, 23);
-            this.button_adjust.TabIndex = 1;
-            this.button_adjust.Text = "调整大屏";
-            this.button_adjust.UseVisualStyleBackColor = true;
-            this.button_adjust.Click += new System.EventHandler(this.button_adjust_Click);
             // 
             // tabPage_cast_screen
             // 
@@ -419,6 +430,95 @@
             this.tabPage_player_screen.Text = "选手屏幕设置";
             this.tabPage_player_screen.UseVisualStyleBackColor = true;
             // 
+            // tabPage_topic
+            // 
+            this.tabPage_topic.Controls.Add(this.button4);
+            this.tabPage_topic.Controls.Add(this.button3);
+            this.tabPage_topic.Controls.Add(this.label10);
+            this.tabPage_topic.Controls.Add(this.label9);
+            this.tabPage_topic.Controls.Add(this.button2);
+            this.tabPage_topic.Controls.Add(this.textBox_y);
+            this.tabPage_topic.Controls.Add(this.textBox_x);
+            this.tabPage_topic.Controls.Add(this.button1);
+            this.tabPage_topic.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_topic.Name = "tabPage_topic";
+            this.tabPage_topic.Size = new System.Drawing.Size(549, 412);
+            this.tabPage_topic.TabIndex = 3;
+            this.tabPage_topic.Text = "选题大屏设置";
+            this.tabPage_topic.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(44, 20);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(460, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "1.显示选题大屏";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // textBox_x
+            // 
+            this.textBox_x.Location = new System.Drawing.Point(77, 68);
+            this.textBox_x.Name = "textBox_x";
+            this.textBox_x.Size = new System.Drawing.Size(55, 21);
+            this.textBox_x.TabIndex = 1;
+            // 
+            // textBox_y
+            // 
+            this.textBox_y.Location = new System.Drawing.Point(243, 68);
+            this.textBox_y.Name = "textBox_y";
+            this.textBox_y.Size = new System.Drawing.Size(58, 21);
+            this.textBox_y.TabIndex = 2;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(382, 68);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(122, 23);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "2.选择题目";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(42, 71);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(29, 12);
+            this.label9.TabIndex = 4;
+            this.label9.Text = "横轴";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(180, 71);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(29, 12);
+            this.label10.TabIndex = 5;
+            this.label10.Text = "纵轴";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(44, 124);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(460, 23);
+            this.button3.TabIndex = 6;
+            this.button3.Text = "3.播放视频";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(44, 177);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(460, 23);
+            this.button4.TabIndex = 7;
+            this.button4.Text = "4.恢复原状";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // ConsoleScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -434,6 +534,8 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
+            this.tabPage_topic.ResumeLayout(false);
+            this.tabPage_topic.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -474,6 +576,15 @@
         private System.Windows.Forms.Button button_set;
         private System.Windows.Forms.Button button_rand;
         private System.Windows.Forms.Button button_text;
+        private System.Windows.Forms.TabPage tabPage_topic;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox textBox_y;
+        private System.Windows.Forms.TextBox textBox_x;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button3;
     }
 }
 

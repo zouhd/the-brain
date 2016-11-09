@@ -25,12 +25,17 @@ namespace FenXingFormDemo
         private int study_num = 0;
         private const int study_max_num = 3;
 
+
+        private int topic_x;
+        private int topic_y;
         private BigScreen m_big_screen;//大屏程序
+        private TopicScreen m_topic_screen;//选题大屏
 
         public ConsoleScreen()
         {
             InitializeComponent();
 
+            m_topic_screen = new TopicScreen();
             /*
              * 根据选手的选题，初始化大屏图片 （提供图片basedir以及题号）
              * 图片库的命名规范是
@@ -242,7 +247,7 @@ namespace FenXingFormDemo
             }
 
 
-            MessageBox.Show( Screen.PrimaryScreen.Bounds.Width.ToString() + ":" + Screen.PrimaryScreen.Bounds.Height.ToString());
+            
             m_big_screen = new BigScreen(ps_pages, ps_pic_row, ps_pic_col, fs_pic_row, fs_pic_col, fx_img_num);
 
             this.button_launch_ps.Enabled = true;
@@ -295,6 +300,39 @@ namespace FenXingFormDemo
 
             
             m_big_screen.ShowText(show_text);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            m_topic_screen.InitScreen();
+            m_topic_screen.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (!Int32.TryParse(this.textBox_x.Text.Trim(), out topic_x))
+            {
+                MessageBox.Show("横轴值.");
+                return;
+            }
+
+            if (!Int32.TryParse(this.textBox_y.Text.Trim(), out topic_y))
+            {
+                MessageBox.Show("纵轴值.");
+                return;
+            }
+
+            m_topic_screen.SelectTopic(topic_x, topic_y);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            m_topic_screen.PlayMov(topic_x, topic_y);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            m_topic_screen.InitScreen();
         }
 
     }

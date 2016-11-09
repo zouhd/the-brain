@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TopicScreen));
             this.panel1 = new System.Windows.Forms.Panel();
             this.axPlayer1 = new AxAPlayer3Lib.AxPlayer();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axPlayer1)).BeginInit();
             this.SuspendLayout();
@@ -38,7 +40,7 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.axPlayer1);
-            this.panel1.Location = new System.Drawing.Point(12, 12);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(960, 660);
             this.panel1.TabIndex = 1;
@@ -72,5 +74,7 @@
 
         private System.Windows.Forms.Panel panel1;
         private AxAPlayer3Lib.AxPlayer axPlayer1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker2;
     }
 }
