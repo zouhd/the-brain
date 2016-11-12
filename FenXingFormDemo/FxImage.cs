@@ -89,14 +89,6 @@ namespace FenXingFormDemo
         }
 
 
-        /*
-         * 显示该图片
-         */
-        public void ShowImage()
-        {
-
-        }
-
         public static int Compare(FxImage left, FxImage right)
         {
             int ret = 0;

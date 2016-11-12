@@ -97,6 +97,8 @@ namespace FenXingFormDemo
             this.pictureBox16 = new System.Windows.Forms.PictureBox();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -769,10 +771,6 @@ namespace FenXingFormDemo
             this.pictureBox11.TabIndex = 0;
             this.pictureBox11.TabStop = false;
             // 
-            // timer1
-            // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // BigScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -783,8 +781,6 @@ namespace FenXingFormDemo
             this.Name = "BigScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "大屏";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BigScreen_FormClosing);
-            this.Load += new System.EventHandler(this.BigScreen_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -819,109 +815,6 @@ namespace FenXingFormDemo
             this.panel1.Controls.Clear();
         }
 
-        
-        /// <summary>
-        /// 初始化分页屏界面
-        /// </summary>
-        /// <param name="pic_row"></param>
-        /// <param name="pic_col"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        /// <param name="padding"></param>
-        public void InitializePagesScreen(int pic_row = 4, int pic_col = 5, int width = 130, int height = 130, int padding = 5)
-        {
-            int pic_num = pic_row * pic_col;//Todo:改成 m_pic_row * m_pic_col
-            int width_gap = 10;
-            int height_gap = 40;
-
-            int init_label_param_left = 45;
-            int init_label_param_top = 125;
-
-            int init_label_seq_left = 60;
-            int init_label_seq_top = 155;
-
-
-            this.Width = (width + width_gap) * pic_col + 60;// 1400;
-            this.panel1.Width = (width + width_gap) * pic_col + 40;// 1400;
-
-
-            ClearComponent();
-
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BigScreen));
-
-
-            if (m_ps_pic_list != null)
-                m_ps_pic_list.Clear();
-
-            if (m_ps_label_param_list != null)
-                m_ps_label_param_list.Clear();
-
-            if (m_ps_label_seq_list != null)
-                m_ps_label_seq_list.Clear();
-
-            m_ps_pic_list = new List<PictureBox>(pic_num);
-            m_ps_label_param_list = new List<Label>(pic_num);
-            m_ps_label_seq_list = new List<Label>(pic_num);
-
-            for (int i = 0; i < pic_num; i++)
-            {
-                m_ps_pic_list.Add(new PictureBox());
-                ((System.ComponentModel.ISupportInitialize)(this.m_ps_pic_list[i])).BeginInit();
-
-                m_ps_pic_list[i].Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_test.Image")));
-
-                m_ps_pic_list[i].Name = "pictureBox" + i.ToString();
-                m_ps_pic_list[i].Padding = new System.Windows.Forms.Padding(5);
-                m_ps_pic_list[i].Size = new System.Drawing.Size(width, height);
-                m_ps_pic_list[i].SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-                m_ps_pic_list[i].TabIndex = 0;
-                m_ps_pic_list[i].TabStop = false;
-
-                m_ps_label_param_list.Add(new Label());
-                m_ps_label_param_list[i].AutoSize = true;
-                m_ps_label_param_list[i].Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-                m_ps_label_param_list[i].Location = new System.Drawing.Point(45, 125);
-                m_ps_label_param_list[i].Name = "label_fx" + i.ToString();
-                m_ps_label_param_list[i].Size = new System.Drawing.Size(55, 21);
-                m_ps_label_param_list[i].TabIndex = 1;
-                m_ps_label_param_list[i].Text = "param" + i.ToString();
-
-                m_ps_label_seq_list.Add(new Label());
-                m_ps_label_seq_list[i].AutoSize = true;
-                m_ps_label_seq_list[i].Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-                m_ps_label_seq_list[i].Location = new System.Drawing.Point(60, 155);
-                m_ps_label_seq_list[i].Name = "label_seq" + i.ToString();
-                m_ps_label_seq_list[i].Size = new System.Drawing.Size(55, 21);
-                m_ps_label_seq_list[i].TabIndex = 1;
-                m_ps_label_seq_list[i].Text = "seq" + i.ToString();
-
-                this.panel1.Controls.Add(m_ps_pic_list[i]);
-                this.panel1.Controls.Add(m_ps_label_param_list[i]);
-                this.panel1.Controls.Add(m_ps_label_seq_list[i]);
-
-                ((System.ComponentModel.ISupportInitialize)(this.m_ps_pic_list[i])).EndInit();
-            }
-
-            int pic_height = m_ps_pic_list[0].Height;
-            int pic_width = m_ps_pic_list[0].Width;
-            //设置图片控件的位置
-            for (int i = 0; i < pic_row; i++)//Todo:改成m_pic_row
-            {
-                for (int j = 0; j < pic_col; j++)//Todo:改成m_pic_col
-                {
-                    m_ps_pic_list[j + i * pic_col].Left = 10 + j * width_gap + j * pic_width;//Todo:改成m_pic_col
-                    m_ps_pic_list[j + i * pic_col].Top = 20 + i * height_gap + i * pic_height;//Todo:改成m_pic_col
-
-                    m_ps_label_seq_list[j + i * pic_col].Left = init_label_seq_left + j * width_gap + j * pic_width;
-                    m_ps_label_seq_list[j + i * pic_col].Top = init_label_seq_top + i * height_gap + i * pic_height;
-
-                    m_ps_label_param_list[j + i * pic_col].Left = init_label_param_left + j * width_gap + j * pic_width;
-                    m_ps_label_param_list[j + i * pic_col].Top = init_label_param_top + i * height_gap + i * pic_height;
-                }
-            }
-
-
-        }
 
         //Todo: 增加定制化图片控件
         /// <summary>
@@ -930,11 +823,11 @@ namespace FenXingFormDemo
         /// <param name="width">图片控件宽度</param>
         /// <param name="height">图片控件高度</param>
         /// <param name="padding"></param>
-        public void InitializeFullScreen(int pic_row = 4, int pic_col = 6, int width = 130, int height = 130, int padding = 5)
+        public void InitializeFullScreen(int pic_row = 5, int pic_col = 5, int width = 130, int height = 130, int padding = 5)
         {
             int pic_num = pic_row * pic_col;//Todo:改成 m_pic_row * m_pic_col
             int width_gap = 10;
-            int height_gap = 40;
+            int height_gap = 10;
 
             int init_label_param_left = 45;
             int init_label_param_top = 125;
@@ -942,10 +835,15 @@ namespace FenXingFormDemo
             int init_label_seq_left = 60;
             int init_label_seq_top = 155;
 
+            int screen_width = Screen.PrimaryScreen.Bounds.Width;
+            int screen_height = Screen.PrimaryScreen.Bounds.Height;
+
             //Todo:根据图片数量设置
             this.Width = (width + width_gap) * pic_col + 60;// 1400;
             this.panel1.Width = (width + width_gap) * pic_col + 40;// 1400;
 
+            this.Height = screen_height;
+            this.panel1.Height = screen_height;
 
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BigScreen));
 
@@ -984,6 +882,7 @@ namespace FenXingFormDemo
                 m_fs_label_param_list[i].Size = new System.Drawing.Size(55, 21);
                 m_fs_label_param_list[i].TabIndex = 1;
                 m_fs_label_param_list[i].Text = "param"+i.ToString();
+                m_fs_label_param_list[i].Visible = false;
 
                 m_fs_label_seq_list.Add(new Label());
                 m_fs_label_seq_list[i].AutoSize = true;
@@ -993,6 +892,7 @@ namespace FenXingFormDemo
                 m_fs_label_seq_list[i].Size = new System.Drawing.Size(55, 21);
                 m_fs_label_seq_list[i].TabIndex = 1;
                 m_fs_label_seq_list[i].Text = "seq" + i.ToString();
+                m_fs_label_seq_list[i].Visible = false;
 
                 this.panel1.Controls.Add(m_fs_pic_list[i]);
                 this.panel1.Controls.Add(m_fs_label_param_list[i]);
@@ -1089,5 +989,7 @@ namespace FenXingFormDemo
         private Label label_fx17;
         private Label label_fx16;
         private System.Windows.Forms.Timer timer1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker2;
     }
 }

@@ -120,25 +120,17 @@ namespace FenXingFormDemo
                 else
                 {
                     m_fx_list[i - 1].STUDY_FLAG = false;
+                    m_fx_list[i - 1].SHOW_FLAG = true;
                 }
 
 
             }
         }
 
-
+        //根据图片编号1-25，返回fx_imgage对象
         public FxImage GetFxImage(int fx_seq_num)
         {
             return m_fx_list[fx_seq_num - 1];
-        }
-
-
-        /**
-         * 按照编号显示分形图片
-         * */
-        public void ShowImages()
-        {
-
         }
 
         /***
@@ -146,31 +138,29 @@ namespace FenXingFormDemo
          * 选手选择3张图片，显示分形图片参数
          * 前提条件是选手选择少于规定的图片数量
          ***/
-        public bool ChooseImage(int selected_num)
+        public int ChooseImage(int selected_num)
         {
-            bool flag = false;
+            int flag = 0;
             if (m_fx_study_num < m_fx_study_max_num)
             {
-                if (selected_num > 0 && selected_num <= m_fx_image_num)
+                if (m_fx_list[selected_num - 1].STUDY_FLAG)
+                    flag = 1;
+                else if (selected_num > 0 && selected_num <= m_fx_image_num)
                 {
                     m_fx_list[selected_num - 1].STUDY_FLAG = true;
                     m_fx_list[selected_num - 1].SHOW_FLAG = false;
                     m_fx_study_num++;
-                    flag = true;
+                    flag = 0;
                 }
+                else
+                    flag = -1;
             }
 
             return flag;
-        }
-        
-        /***
-         *放大显示图片 
-         * */
-        public void MaginifyImage(String image_name)
-        {
-        }
 
-        
+
+        }
+           
  
         /**
          * 
