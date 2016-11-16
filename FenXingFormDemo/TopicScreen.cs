@@ -104,7 +104,8 @@ namespace FenXingFormDemo
                     label_array[i, j].BringToFront();
                 }
 
-            
+
+            fx_param.Visible = false;
         }
 
         public void SelectTopic(int x, int y)
@@ -113,6 +114,10 @@ namespace FenXingFormDemo
             topic_param.y = y;
 
             fx_param.Visible = false;
+
+            for (int i = 0; i < pic_row; i++)
+                for (int j = 0; j < pic_col; j++)
+                    label_array[i, j].Visible = false;
 
             if (!backgroundWorker1.IsBusy)
                 backgroundWorker1.RunWorkerAsync();
@@ -129,9 +134,6 @@ namespace FenXingFormDemo
             this.axPlayer1.Visible = true;
             axPlayer1.BringToFront();
 
-            
-
-           
 
             axPlayer1.Open(@"D:\临时项目\Repository\the-brain\FenXingFormDemo\mov\fx4.mov");
             axPlayer1.OnStateChanged +=axPlayer1_OnStateChanged;
@@ -141,8 +143,8 @@ namespace FenXingFormDemo
 
         private void axPlayer1_OnStateChanged(object sender, AxAPlayer3Lib._IPlayerEvents_OnStateChangedEvent e)
         {
-            int x = topic_param.x;
-            int y = topic_param.y;
+            int x = topic_param.x - 1;
+            int y = topic_param.y - 1;
 
             //停止播放
             if (e.nNewState == 0)
@@ -178,8 +180,8 @@ namespace FenXingFormDemo
         }
         private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            int x = topic_param.x;
-            int y = topic_param.y;
+            int x = topic_param.x - 1;
+            int y = topic_param.y - 1;
 
             if (e.ProgressPercentage == 1)
             {

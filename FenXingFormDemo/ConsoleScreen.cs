@@ -53,6 +53,9 @@ namespace FenXingFormDemo
         /// <param name="e"></param>
         private void button_launch_fs_Click(object sender, EventArgs e)
         {
+
+            m_topic_screen.Hide();
+
             m_big_screen.Left = 0;
             m_big_screen.Top = 0;
             m_big_screen.ClearComponent();

@@ -112,7 +112,8 @@ namespace FenXingFormDemo
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-            for (int i = 1; i <= 5; i++)
+            int pic_num = m_fx_img_num;
+            for (int i = 0; i < m_fx_img_num; i++)
             {
                 backgroundWorker1.ReportProgress(i);
                 Thread.Sleep(500);//片头参数停留时间
@@ -124,6 +125,27 @@ namespace FenXingFormDemo
             FxImage fx_img;
             String pic_name;
 
+            int fx_index = e.ProgressPercentage;
+
+            fx_img = m_img_list.GetFxImage(fx_index + 1);
+            pic_name = fx_img.IMAGE_NAME;
+            m_fs_pic_list[fx_index].Load(pic_name);
+
+            m_fs_label_param_list[fx_index].Text = String.Format("x: {0}, y: {1}", fx_img.FX_X, fx_img.FX_Y);
+
+            if (fx_img.FIRST_FLAG || fx_img.LAST_FLAG || fx_img.STUDY_FLAG)
+            {
+                m_fs_label_param_list[fx_index].ForeColor = Color.Red;
+                m_fs_label_param_list[fx_index].BringToFront();
+                m_fs_label_param_list[fx_index].Visible = true;
+            }
+            else
+            {
+                m_fs_label_param_list[fx_index].Visible = false;
+            }
+           
+
+            /*
             int row = e.ProgressPercentage;
             int fx_index = 0;
             for (int i = 0; i < m_fs_pic_col; i++)
@@ -146,6 +168,7 @@ namespace FenXingFormDemo
                     m_fs_label_param_list[fx_index].Visible = false;
                 }
             }
+             */
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
